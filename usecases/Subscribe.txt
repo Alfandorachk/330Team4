@@ -1,0 +1,14 @@
+***Team 4 (Peter Moerman #3)***
+*******************************
+
+Title: Subscribe
+
+Goal: Subscribe to another User's posts
+
+Main Success Scenario:
+	1) User1 finds another User2 they wish to follow
+	2) User1 chooses to follow User2's profile
+	3) User1 receives a log of all messages User2 posts
+
+Extensions:
+
