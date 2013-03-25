@@ -1,0 +1,19 @@
+***Team 4 Use Case (Peter Moerman)***
+*************************************
+
+Title: Logout
+
+Goal: System saves user's session and ends session
+
+Pre-condition:
+	1) User is logged in
+
+Main Success Scenario:
+	1) System waits shows the User Logout button
+	2) User presses the Logout button
+	3) System saves User's session
+	4) System end the current session
+	5) System returns to home page
+
+Extensions:
+
