@@ -1,0 +1,17 @@
+Title:
+	Create Account
+Goal:
+	User wishes to create an account from which they can do account-holder-only
+	activities.
+
+Main Success Scenario:
+1)	User enters desired username, password, and password confirmation
+2)	System checks that desired username is available
+3)	System registers new username and associates it with (hashed) password
+4)	User is redirected to the login page
+
+Extensions:
+2a)	System finds that username is unavailable
+	.1:	System offers the username with appended digits to make it unique
+	.2: User accepts offered username, selects new username, or cancels
+

@@ -1,0 +1,18 @@
+Title:
+	Login
+
+Goal: 	
+	User wishes to log in in order to _View Private Messages_ or
+	_Post a Message_
+
+Main Success Scenario:
+1)	User enters username and password
+2)	System authenticates username and password
+3)	System redirects user to user profile page
+
+Extensions:
+2a)	System fails to authenticate user
+	.1:	User chooses to re-enter information or quit
+	.2:	User chooses to _Create New Account_
+	.3:	User requests system e-mail password reset form
+

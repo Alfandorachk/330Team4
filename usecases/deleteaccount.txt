@@ -1,0 +1,13 @@
+Title:
+	Delete Account
+Goal:
+	To freeze an account, keeping the history but locking new activity
+
+Main Success Scenario:
+1)	System confirms user account exists
+2)	System removes username as a valid login name
+
+Extensions:
+1a)	System determines account does not exists
+	.1:	System informs deleter and cancels process
+2a)	System does NOT remove name as an existant name - no new accounts w/ name

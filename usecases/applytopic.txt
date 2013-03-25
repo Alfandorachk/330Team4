@@ -1,0 +1,10 @@
+Title:
+	Mark Message with a Topic
+Goal:
+	Apply a topic to a message, so that searches for messages by topic will
+	return said message
+
+Main Success Scenario:
+1)	User includes a hashtag immediately followed by a word with no spaces in
+	their message
+2)	System includes this message in future searches for this topic

@@ -1,0 +1,16 @@
+Title:
+	Delete Message
+Goal:
+	To remove a message from the system
+
+Main Success Scenario:
+1)	User selects a message to delete
+2)	System ensures message is recent enough to delete
+3)	System asks for delete confirmation
+4)	System removes message from system
+
+Extensions:
+2a)	User is in admin mode
+	.1:	Return to MSS at step 3
+3a)	User does not confirm delete
+	.1: Exit use case

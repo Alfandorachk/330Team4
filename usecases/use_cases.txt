@@ -46,4 +46,45 @@ Extensions:
 
 /* Use case #2 (Daniel Easterling) */
 Title:
-	
+	Delete Account
+Goal:
+	To freeze an account, keeping the history but locking new activity
+
+Main Success Scenario:
+1)	System confirms user account exists
+2)	System removes username as a valid login name
+
+Extensions:
+1a)	System determines account does not exists
+	.1:	System informs deleter and cancels process
+2a)	System does NOT remove name as an existant name - no new accounts w/ name
+
+/* Use case #3 (Daniel Easterling) */
+Title:
+	Delete Message
+Goal:
+	To remove a message from the system
+
+Main Success Scenario:
+1)	User selects a message to delete
+2)	System ensures message is recent enough to delete
+3)	System asks for delete confirmation
+4)	System removes message from system
+
+Extensions:
+2a)	User is in admin mode
+	.1:	Return to MSS at step 3
+3a)	User does not confirm delete
+	.1: Exit use case
+
+/* Use case #4 (Daniel Easterling) */
+Title:
+	Mark Message with a Topic
+Goal:
+	Apply a topic to a message, so that searches for messages by topic will
+	return said message
+
+Main Success Scenario:
+1)	User includes a hashtag immediately followed by a word with no spaces in
+	their message
+2)	System includes this message in future searches for this topic
