@@ -1,0 +1,17 @@
+***Team 4 (Peter Moerman #4)***
+*******************************
+
+Title: Unsubscribe
+
+Goal: Stop following another user's posts
+
+Pre-condition:
+	1) User1 is subscribed to User2
+
+Main Success Scenario:
+	1) User1 no longer desires to follow User2
+	2) User1 chooses to stop following User2
+	3) System stops sending User1 User2's message history
+	4) User1 is considered "unsubscribed" from User2
+
+Extensions:
