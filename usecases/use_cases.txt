@@ -5,7 +5,6 @@ Use Case Template From Notes	(Book Version)
 	Alternate Flow				(Extentions)
 
 
-
 /* Use case #1 (Peter Moerman) */
 Title:
 	Login
@@ -26,65 +25,114 @@ Extensions:
 	.3:	User requests system e-mail password reset form
 
 
+***Team 4 Use Case (Peter Moerman)***
+*************************************
+
+Title: Logout
+
+Goal: System saves user's session and ends session
+
+Pre-condition:
+	1) User is logged in
+
+Main Success Scenario:
+	1) System waits shows the User Logout button
+	2) User presses the Logout button
+	3) System saves User's session
+	4) System end the current session
+	5) System returns to home page
+
+Extensions:
+
+
+***Team 4 (Peter Moerman #3)***
+*******************************
+
+Title: Subscribe
+
+Goal: Subscribe to another User's posts
+
+Main Success Scenario:
+	1) User1 finds another User2 they wish to follow
+	2) User1 chooses to follow User2's profile
+	3) User1 receives a log of all messages User2 posts
+	4) User1 is considered "subscribed" to User2
+
+Extensions:
+
+
+***Team 4 (Peter Moerman #4)***
+*******************************
+
+Title: Unsubscribe
+
+Goal: Stop following another user's posts
+
+Pre-condition:
+	1) User1 is subscribed to User2
+
+Main Success Scenario:
+	1) User1 no longer desires to follow User2
+	2) User1 chooses to stop following User2
+	3) System stops sending User1 User2's message history
+	4) User1 is considered "unsubscribed" from User2
+
+Extensions:
+
+
 /* Use case #1 (Daniel Easterling) */
-Title:
-	Create Account
-Goal:
-	User wishes to create an account from which they can do account-holder-only
+Title: Create Account
+Goal: User wishes to create an account from which they can do account-holder-only
 	activities.
 
 Main Success Scenario:
-1)	User enters desired username, password, and password confirmation
-2)	System checks that desired username is available
-3)	System registers new username and associates it with (hashed) password
-4)	User is redirected to the login page
+	1)	User enters desired username, password, and password confirmation
+	2)	System checks that desired username is available
+	3)	System registers new username and associates it with (hashed) password
+	4)	User is redirected to the login page
 
 Extensions:
-2a)	System finds that username is unavailable
-	.1:	System offers the username with appended digits to make it unique
-	.2: User accepts offered username, selects new username, or cancels
+	2a)	System finds that username is unavailable
+		.1:	System offers the username with appended digits to make it unique
+		.2: User accepts offered username, selects new username, or cancels
 
 /* Use case #2 (Daniel Easterling) */
-Title:
-	Delete Account
-Goal:
-	To freeze an account, keeping the history but locking new activity
+Title: Delete Account
+Goal: To freeze an account, keeping the history but locking new activity
 
 Main Success Scenario:
-1)	System confirms user account exists
-2)	System removes username as a valid login name
+	1)	System confirms user account exists
+	2)	System removes username as a valid login name
 
 Extensions:
-1a)	System determines account does not exists
-	.1:	System informs deleter and cancels process
-2a)	System does NOT remove name as an existant name - no new accounts w/ name
+	1a)	System determines account does not exists
+		.1:	System informs deleter and cancels process
+	2a)	System does NOT remove name as an existant name - no new accounts w/ name
+
 
 /* Use case #3 (Daniel Easterling) */
-Title:
-	Delete Message
-Goal:
-	To remove a message from the system
+Title: Delete Message
+Goal: To remove a message from the system
 
 Main Success Scenario:
-1)	User selects a message to delete
-2)	System ensures message is recent enough to delete
-3)	System asks for delete confirmation
-4)	System removes message from system
+	1)	User selects a message to delete
+	2)	System ensures message is recent enough to delete
+	3)	System asks for delete confirmation
+	4)	System removes message from system
 
 Extensions:
-2a)	User is in admin mode
-	.1:	Return to MSS at step 3
-3a)	User does not confirm delete
-	.1: Exit use case
+	2a)	User is in admin mode
+		.1:	Return to MSS at step 3
+	3a)	User does not confirm delete
+		.1: Exit use case
+
 
 /* Use case #4 (Daniel Easterling) */
-Title:
-	Mark Message with a Topic
-Goal:
-	Apply a topic to a message, so that searches for messages by topic will
+Title: Mark Message with a Topic
+Goal: Apply a topic to a message, so that searches for messages by topic will
 	return said message
 
 Main Success Scenario:
-1)	User includes a hashtag immediately followed by a word with no spaces in
-	their message
-2)	System includes this message in future searches for this topic
+	1)	User includes a hashtag immediately followed by a word with no spaces in
+		their message
+	2)	System includes this message in future searches for this topic
