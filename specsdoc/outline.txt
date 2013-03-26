@@ -51,4 +51,12 @@ Title Page with Index
 
 
 4)	Assumptions
+	The system requirements for Bitter are not heavy in the least.  The most
+	basic of networked systems, where each user has access to a keyboard and
+	command line, should be able to run Bitter.  The actual requirements are
+	as follows:
+	1)	A Java Runtime Environment (JRE), version 7 or later
+	2)	A keyboard or keyboard alternative
+	3)	Access to a command line, and permissions to run Bitter
+	4)	An efficient and stable keyboard-chair interface
 
