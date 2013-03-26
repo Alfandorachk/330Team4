@@ -1,0 +1,48 @@
+Title Page with Index
+
+1)	Introduction
+	.1:	Document purpose
+		
+
+	.2:	System scope
+		This system is intended to offer a non-productive alternative to those
+		using the intranets of various computer labs, companies, coffehouses,
+		conventions, large LAN parties, or wherever an intranet may be.
+	
+		PRODUCTNAME allows users to chat asynchronously with other users of
+		PRODUCTNAME within the confines of the intranet on which PRODUCTNAME
+		is installed.  Users may set a profile and link to an e-mail if they
+		wish, but this is not required.  Messages posted by a user may be
+		viewed by any other user that chooses to look at that first user's
+		messages, unless they are marked private, in which case only subscribers
+		of the user may view the messages.
+
+		To aid in communication, PRODUCTNAME allows users to mark their
+		messages with topics, so that one may browse messages by topic instead
+		of by individual user.  This way, even as users sit quietly, staring
+		at the glowing portals that transport them to realms of pure logic
+		and kittens, users may poll the ever-changing labgeist about
+		important topics of the hour, such as why people are wrong to prefer
+		Next Gen to Original, or who just farted.
+		
+	.3:	Overview of rest of document
+
+
+2)	Overall Description
+	.1:	Client characteristics
+		The client of PRODUCTNAME is the sys-admin on the up-and-up.
+
+	.2:	User characteristics
+		The typical user of this system has watched the entirety of telnet
+		Star Wars on a Friday night and recalls a glorious time of networks
+		that were anti-social, rather than the tittering extroverts they are
+		today.
+
+	.3:	Product functions
+
+
+3)	System Specification
+
+
+4)	Assumptions
+

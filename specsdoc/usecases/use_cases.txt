@@ -79,7 +79,7 @@ Main Success Scenario:
 
 Extensions:
 
-
+/***********************************/
 /* Use case #1 (Daniel Easterling) */
 Title: Create Account
 Goal: User wishes to create an account from which they can do account-holder-only
@@ -96,6 +96,7 @@ Extensions:
 		.1:	System offers the username with appended digits to make it unique
 		.2: User accepts offered username, selects new username, or cancels
 
+/***********************************/
 /* Use case #2 (Daniel Easterling) */
 Title: Delete Account
 Goal: To freeze an account, keeping the history but locking new activity
@@ -109,7 +110,7 @@ Extensions:
 		.1:	System informs deleter and cancels process
 	2a)	System does NOT remove name as an existant name - no new accounts w/ name
 
-
+/***********************************/
 /* Use case #3 (Daniel Easterling) */
 Title: Delete Message
 Goal: To remove a message from the system
@@ -126,7 +127,7 @@ Extensions:
 	3a)	User does not confirm delete
 		.1: Exit use case
 
-
+/***********************************/
 /* Use case #4 (Daniel Easterling) */
 Title: Mark Message with a Topic
 Goal: Apply a topic to a message, so that searches for messages by topic will
