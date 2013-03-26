@@ -1,0 +1,13 @@
+/* Ryan O'Gorman */
+
+Title:
+	View Public Messages
+Goal:
+	User wishes to view another users public messages. 
+
+Main Success Scenario:
+1)	User selects another User.
+2)	System displays public messages from the selected User. 
+3)	System gives the option to view earlier messages.
+
+Extensions:
