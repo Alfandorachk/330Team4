@@ -59,4 +59,25 @@ Profile:
 
 Query:
 	Query handles interactions between the driver and the message storing
-	classes.
+	classes.  Note that "filter" below can be a standard string, in which
+	case it is considered a username, or may be affixed with a # (hashtag),
+	which indicates that one wishes to filter by topic.
+
+	MessageQueue getMessages(String filter)
+
+***
+
+MessageHash:
+	MessageHash is a wrapper for the Standard Library HashMap class.  Two main
+	instances are planned: TopicHash and UserHash, which will associate messages
+	with topics and users, respectively.
+
+***
+
+MessageQueue:
+	MessageQueue is a wrapper for the Standard Library Queue interface.  It holds
+	messages.
+
+***
+
+
