@@ -1,0 +1,22 @@
+/* Ryan O'Gorman */
+
+Title:
+	Post Public Message
+
+Goal:
+	User wishes to post a new message to be viewed as public. 
+
+Main Success Scenario:
+1)	System gives the User lines to input a message of under 140 characters.
+2)	User inputs his message. 
+3)	User pushes enter.
+4)	System checks message to make sure it is under 140 characters.
+5)	System posts message to User's public messages.
+6)	System returns User to profile page.
+
+Extensions:
+
+4a)	Message is longer than 140 characters.
+	.1: System gives User message that the post is too long.
+	.2: System gives User the option to shorten their message.
+	.3: Return to step 3.
