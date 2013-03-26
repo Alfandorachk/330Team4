@@ -1,0 +1,62 @@
+System specification:
+
+	The Bitter system design is geared toward its goal - a beautiful melding
+of design and functionality.  The intention of the Bitter design team is to
+exercise our craftsmanship by building upon the following rock-solid foundation
+of a class list:
+
+***
+
+UserInterface:
+	This class details the working of the Bitter user interface.  By separating
+	this functionality from the rest of the systems, the Bitter engineers can
+	later implement a graphical user interface if it is deemed so necessary.
+
+	Action getAction()
+	void display(DisplayPiece dp)
+
+***
+
+FileIO:
+	FileIO handles the persistence aspects of Bitter.  It is typically triggered
+	every five minutes or so, or by administrator fiat.
+
+	void save()
+
+***
+
+Driver:
+	This class acts as the driver for the whole system.  It handles interactions
+	between the various input/output classes and the rest of the systems.
+
+	void main(String[] args)
+	void programLoop()
+	void act(Action)
+
+***
+	
+AccountTable:
+	AccountTable keeps track of usernames, passwords (hashed, of course!), and
+	account status.
+
+	bool verify(String username, String password)
+	bool getStatus(String username)
+
+***
+
+User:
+	User keeps track of settings for users, including profiles.  It is mostly
+	a data-tracking class, and its functionality consists largely of accessors
+	and mutators.
+
+***
+
+Profile:
+	Profile is another data-holding class that stores information about a
+	specific user, such as e-mail, real name, etc.
+
+***
+
+Query:
+	Query handles interactions between the driver and the message storing
+	classes.
