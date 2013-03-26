@@ -1,0 +1,17 @@
+/* Ryan O'Gorman */
+
+Title: 
+	View Private Message
+Goal:
+	User wishes to view messages from a user they are subscribed to.
+
+Main Success Scenario:
+1)	User selects another User. 
+2) 	System confirms primary User is subscribed to the selected user.
+3)	System displays public and private messages from selected User.
+4)	System marks each private message with a marker.
+5)	System gives the option to view earlier messages.
+
+Extensions:
+2a)	Primary User is not subscribed to selected User
+	.1:	System displays selected users public messages.
