@@ -1,7 +1,10 @@
 Title Page with Index
 
 1)	Introduction
-	.1:	Document purpose
+	.1:	Document Purpose:
+		This documents purpose is to outline the functionality of the Bitter 
+		networking system. Our intended audience is the stake-holders of the 
+		company. Basically, anyone can be a stakeholder. 
 		
 
 	.2:	System scope
@@ -25,7 +28,10 @@ Title Page with Index
 		important topics of the hour, such as why people are wrong to prefer
 		Next Gen to Original, or who just farted.
 		
-	.3:	Overview of rest of document
+	.3:	Overview of rest of document:
+		From here onward there will first be an overall description of who 
+		Bitter is for and a more detailed description of how the product 
+		functions using a case-write up.
 
 
 2)	Overall Description
