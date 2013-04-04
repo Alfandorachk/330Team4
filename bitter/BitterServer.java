@@ -1,3 +1,5 @@
+package bitter;
+
 import java.io.*;
 import java.net.*;
 

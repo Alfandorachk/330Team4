@@ -3,6 +3,15 @@
 
 Repository for 330 team 4
 
+Since this is a Java project, I've included all .class files in the exclude
+file (.git/info/exclude).  This means those files will not be tracked by
+git, so feel free to compile right into this repository if you aren't using
+a separate bin folder. 
+
+
+
+
+
 Some things to help you get started with Git, if you're not familiar:
 
 http://blog.evan.pro/properly-excluding-ide-specific-files-with-git
