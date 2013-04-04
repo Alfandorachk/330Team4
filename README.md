@@ -14,3 +14,6 @@ http://git-scm.com/docs/gitignore
 http://byte.kde.org/~zrusin/git/git-cheat-sheet-medium.png
 http://www.cheatography.com/samcollett/cheat-sheets/git/
 	-- 	These are a couple of cheatsheets you might find handy
+
+http://docs.oracle.com/javase/tutorial/networking/sockets/index.html
+	--	This link is the start of the tutorial chain on using sockets in Java
