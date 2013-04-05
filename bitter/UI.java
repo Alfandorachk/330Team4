@@ -1,3 +1,4 @@
+package bitter;
 
 public class UI {
 	private char option1, option2, option3, option4, option5, option6;
