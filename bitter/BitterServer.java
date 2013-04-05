@@ -76,8 +76,8 @@ public class BitterServer {
 	}
 
 	/**
-	 * NOT YET IMPLEMENTED. Determines whether a given integer is a valid
-	 * port number for BitterServer to listen on.
+	 * Determines whether a given integer is a valid port number for 
+	 * BitterServer to listen on.
 	 *
 	 * @param port the port to be listened to.
 	 */
