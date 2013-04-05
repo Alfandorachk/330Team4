@@ -14,7 +14,14 @@ import java.net.*;
  */
 public class BitterServer {
 
-	public static final int DEFAULT_PORT = 4444;
+	/** 
+	 * Default port.
+	 */
+	public static final int DEFAULT_PORT = 4943;
+	/** Minimum allowable port number */
+	public static final int MIN_PORT = 1025;
+	/** Maximum allowable port number */
+	public static final int MAX_PORT = 65535;
 
 	/**
 	 * Listens for connections from BitterClient, and passes them off to
@@ -39,7 +46,7 @@ public class BitterServer {
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
-			System.err.print("Could not listen on port: %d\n", port):
+			System.err.printf("Could not listen on port: %d\n", port);
 			System.exit(1);
 		}
 
@@ -54,9 +61,10 @@ public class BitterServer {
 	 * 
 	 * @param port the first argument from the command line.
 	 */
-	private static int setPort(String port) {
+	private static int setPort(String port_string) {
+		int port;
 		try {
-			if (!isValidPort(port = Integer.parseInt(args[0]))) {
+			if (!isValidPort(port = Integer.parseInt(port_string))) {
 				System.err.print("Invalid port selected. Aborting.\n");
 				System.exit(1);
 			}
@@ -64,6 +72,7 @@ public class BitterServer {
 			System.err.print("Port must be an integer. Aborting.\n");
 			System.exit(1);
 		}
+		return port;
 	}
 
 	/**
@@ -73,7 +82,6 @@ public class BitterServer {
 	 * @param port the port to be listened to.
 	 */
 	private static boolean isValidPort(int port) {
-		//TODO: implement this method
-		return true;
+		return port >= MIN_PORT && port <= MAX_PORT;
 	}
 } // End class BitterServer
