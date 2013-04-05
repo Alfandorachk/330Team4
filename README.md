@@ -3,11 +3,12 @@
 
 Repository for 330 team 4
 
-Since this is a Java project, I've included all .class files in the exclude
-file (.git/info/exclude).  This means those files will not be tracked by
-git, so feel free to compile right into this repository if you aren't using
-a separate bin folder. 
-
+Since this is a Java project, you may want to add \*.class to your
+.git/info/exclude file if you plan on compiling within the repository. (Do not
+include the backslash, that's only there because the asterisk is a special
+character in markdown (md) files).  If you're using something like NetBeans or
+Eclipse, this probably won't be necessary, since the default is to include
+compiled classes in a separate /bin folder.
 
 
 
