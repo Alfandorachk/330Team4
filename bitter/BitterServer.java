@@ -62,7 +62,7 @@ public class BitterServer {
 	 * @param port the first argument from the command line.
 	 */
 	private static int setPort(String port_string) {
-		int port;
+		int port = DEFAULT_PORT;
 		try {
 			if (!isValidPort(port = Integer.parseInt(port_string))) {
 				System.err.print("Invalid port selected. Aborting.\n");
