@@ -25,19 +25,23 @@ public class BitterClient {
 	 * @param host the unqualified name of the server to be connected to
 	 * @param port the port at which the server is listening
 	 */
-	public BitterClient(String host, int port) {
+	public BitterClient(String host, int port) throws IOException {
 		this.host = host;
 		this.port = port;
 		connectToServer();
 		socket = new Socket(host, port);
-		out = new PrintWriter(socket.getOutPutStream, true);
+		out = new PrintWriter(socket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+	}
+
+	//TODO: implement this method
+	private void connectToServer() {
 	}
 
 	/**
 	 * Closes the various connections and streams that have been opened.
 	 */
-	public closeConnections() {
+	public void closeConnections() throws IOException {
 		out.close();
 		in.close();
 		socket.close();
