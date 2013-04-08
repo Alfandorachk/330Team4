@@ -13,29 +13,25 @@ import java.io.*;
  */
 public class BitterClient {
 
-	Socket socket;
-	PrintWriter out;
-	BufferedReader in;
-	String host;
-	int port;
+	private Socket socket;
+	private PrintWriter out;
+	private BufferedReader in;
+	private String host;
+	private int port;
 
 	/**
 	 * Opens a connection to the given host on the given port.
 	 * 
 	 * @param host the unqualified name of the server to be connected to
 	 * @param port the port at which the server is listening
+	 * @throws IOException if an I/O connection cannot be made with the server
 	 */
 	public BitterClient(String host, int port) throws IOException {
 		this.host = host;
 		this.port = port;
-		connectToServer();
 		socket = new Socket(host, port);
 		out = new PrintWriter(socket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-	}
-
-	//TODO: implement this method
-	private void connectToServer() {
 	}
 
 	/**
