@@ -1,0 +1,11 @@
+Class               (Responsibility)
+------------        ----------------------
+
+BitterServer        (Accepts client connection and assigns it to a thread)
+BitterServerThread  (Receives client from server; responds to client commands
+                     based on protocol)
+BitterProtocol      (Determines appropriate response based on client command)
+BitterClient        (Accepts user input and sends it to server, outputs
+                     response)
+
+Port                (Holds information about valid ports for Bitter)
