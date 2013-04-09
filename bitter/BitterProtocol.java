@@ -16,7 +16,10 @@ public class BitterProtocol {
 	
 	public String processCommand(String command) {
 		String output = null;
-		output = new String(command);
+        if (command == null) 
+            output = "Hello?\n";
+        else
+            output = new String(command);
 		return output;
 	}
 		

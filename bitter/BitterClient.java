@@ -13,34 +13,71 @@ import java.io.*;
  */
 public class BitterClient {
 
-	private Socket socket;
-	private PrintWriter out;
-	private BufferedReader in;
-	private String host;
-	private int port;
+    public static void main(String[] args) throws IOException {
+        Socket socket = null;
+        PrintWriter out = null;
+        BufferedReader in = null;
+        String host = null;
+        int port = Port.DEFAULT_PORT;
+        try {
+            host = getHost(args[0]);
+            port = Port.parsePort(getPort(args[0]));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.err.print("BitterClient must be called with first arugment" +
+                             " of form hostname:port\n");
+            System.exit(1);
+        } catch (NumberFormatException e) {
+            System.err.print("Could not parse port\n");
+            System.exit(1);
+        } catch (IllegalArgumentException e) {
+            System.err.print("Port is not valid\n");
+            System.exit(1);
+        } catch (Exception e) {
+            System.err.print("Crap, unknown exception\n");
+            e.printStackTrace();
+            System.exit(1);
+        }
 
-	/**
-	 * Opens a connection to the given host on the given port.
-	 * 
-	 * @param host the unqualified name of the server to be connected to
-	 * @param port the port at which the server is listening
-	 * @throws IOException if an I/O connection cannot be made with the server
-	 */
-	public BitterClient(String host, int port) throws IOException {
-		this.host = host;
-		this.port = port;
-		socket = new Socket(host, port);
-		out = new PrintWriter(socket.getOutputStream(), true);
-		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-	}
+        try {
+            socket = new Socket(host, port);
+            out = new PrintWriter(socket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(
+                    socket.getInputStream()));
+        } catch (UnknownHostException e) {
+            System.err.printf("Unknown host: %s\n", host);
+            System.exit(1);
+        } catch (IOException e) {
+            System.err.printf("Couldn't get I/O for %s\n", host);
+            System.exit(1);
+        }
 
-	/**
-	 * Closes the various connections and streams that have been opened.
-	 */
-	public void closeConnections() throws IOException {
-		out.close();
-		in.close();
-		socket.close();
-	}
+        BufferedReader stdIn = new BufferedReader(
+                              new InputStreamReader(System.in));
+        String fromServer;
+        String fromUser;
+
+        while ((fromServer = in.readLine()) != null) {
+            System.out.println(fromServer);
+            fromUser = stdIn.readLine();
+            if (fromUser != null) {
+                out.println(fromUser);
+            }
+            if (fromUser.equals("exit"))
+                break;
+        }
+
+        out.close();
+        in.close();
+        stdIn.close();
+        socket.close();
+    }
+
+    private static String getPort(String hostAndPort) {
+        return hostAndPort.split(":")[1];
+    }
+
+    private static String getHost(String hostAndPort) {
+        return hostAndPort.split(":")[0];
+    }
 
 } // End class BitterClient
