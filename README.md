@@ -3,6 +3,16 @@
 
 Repository for 330 team 4
 
+Since this is a Java project, you may want to add \*.class to your
+.git/info/exclude file if you plan on compiling within the repository. (Do not
+include the backslash, that's only there because the asterisk is a special
+character in markdown (md) files).  If you're using something like NetBeans or
+Eclipse, this probably won't be necessary, since the default is to include
+compiled classes in a separate /bin folder.
+
+
+
+
 Some things to help you get started with Git, if you're not familiar:
 
 http://blog.evan.pro/properly-excluding-ide-specific-files-with-git

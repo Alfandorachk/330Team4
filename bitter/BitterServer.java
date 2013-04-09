@@ -1,3 +1,5 @@
+package bitter;
+
 import java.io.*;
 import java.net.*;
 
@@ -12,8 +14,6 @@ import java.net.*;
  */
 public class BitterServer {
 
-	public static final int DEFAULT_PORT = 4444;
-
 	/**
 	 * Listens for connections from BitterClient, and passes them off to
 	 * BitterServerThread.  BitterServer listens to the port passed in from the
@@ -27,18 +27,24 @@ public class BitterServer {
 	public static void main(String[] args) throws IOException {
 		ServerSocket serverSocket = null;
 		boolean listening = true;
-		int port;
+		int port = Port.DEFAULT_PORT;
 
-		if (args.length > 0) 
-			port = setPort(args[0]);
-		else
-			port = DEFAULT_PORT;
+		if (args.length > 0) {
+            String port_arg = args[0];
+            try {
+                port = Port.parsePort(port_arg);
+            } catch (NumberFormatException e) {
+                System.err.printf("Could not parse %s\n", port_arg);
+                System.exit(1);
+            } catch (IllegalArgumentException e) {
+                System.err.printf("%s is not a valid port\n", port_arg);
+            }
+        }
 
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
-			//Eclipse expects print to ask for (int), not (string, int), thus throws error, PDM
-			System.err.print("Could not listen on port: %d\n", port);
+			System.err.printf("Could not listen on port: %d\n", port);
 			System.exit(1);
 		}
 
@@ -48,31 +54,4 @@ public class BitterServer {
 		serverSocket.close();
 	}
 
-	/**
-	 * Parses the port argument passed in from the command line.
-	 * 
-	 * @param port the first argument from the command line.
-	 */
-	private static int setPort(String port) {
-		try {
-			//this method is outside main, thus args is not a variable PDM
-			if (!isValidPort(port = Integer.parseInt(args[0]))) {
-				System.err.print("Invalid port selected. Aborting.\n");
-				System.exit(1);
-			}
-		} catch (NumberFormatException e) {
-			System.err.print("Port must be an integer. Aborting.\n");
-			System.exit(1);
-		}
-	}
-
-	/**
-	 * NOT YET IMPLEMENTED. Determines whether a given integer is a valid
-	 * port number for BitterServer to listen on.
-	 *
-	 * @param port the port to be listened to.
-	 */
-	private static boolean isValidPort(int port) {
-		return true;
-	}
 } // End class BitterServer
