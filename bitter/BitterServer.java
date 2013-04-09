@@ -37,7 +37,8 @@ public class BitterServer {
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
-			System.err.print("Could not listen on port: %d\n", port):
+			//Eclipse expects print to ask for (int), not (string, int), thus throws error, PDM
+			System.err.print("Could not listen on port: %d\n", port);
 			System.exit(1);
 		}
 
@@ -54,6 +55,7 @@ public class BitterServer {
 	 */
 	private static int setPort(String port) {
 		try {
+			//this method is outside main, thus args is not a variable PDM
 			if (!isValidPort(port = Integer.parseInt(args[0]))) {
 				System.err.print("Invalid port selected. Aborting.\n");
 				System.exit(1);
@@ -71,7 +73,6 @@ public class BitterServer {
 	 * @param port the port to be listened to.
 	 */
 	private static boolean isValidPort(int port) {
-		//TODO: implement this method
 		return true;
 	}
 } // End class BitterServer
