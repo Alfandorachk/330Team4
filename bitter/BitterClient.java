@@ -13,24 +13,87 @@ import java.io.*;
  */
 public class BitterClient {
 
+        private Socket socket;
+        private PrintWriter out;
+        private BufferedReader in;
+        private String host;
+        private int port;
+
+	/**
+	 * Creates a new BitterClient that will connect to the given host and
+	 * port.
+	 * @param host the host's IP address or FQDN
+	 * @param port the port at which to connect
+	 */
+	public BitterClient(String host, int port) {
+		this.host = host;
+		this.port = port;
+		socket = null;
+		out = null;
+		in = null;
+	}
+
+	/**
+	 * Connects to the server.
+	 *
+	 * @throws IOException if the client could not open I/O on the socket
+	 * @throws UnkownHostException if the host could not be contacted
+	 */
+	public void connect() throws IOException, UnknownHostException {
+		socket = new Socket(host, port);
+		out = new PrintWriter(socket.getOutputStream(), true);
+		in = new BufferedReader(new InputStreamReader(
+				socket.getInputStream()));
+	}
+
+	/**
+	 * Closes all connections formed in connecting to server.
+	 */
+	public void close() throws IOException {
+        out.close();
+        in.close();
+        socket.close();
+	}
+
+	/**
+	 * Gets the next communication from the server.
+	 * @return the next communication from the server
+	 */
+	public String getServerResponse() throws IOException {
+	   return in.readLine();
+	}
+
+	/**
+	 * Sends a communication to the server.
+	 * @param the communication to the server
+	 */
+	public void sendCommunication(String message) {
+		out.println(message);
+	}
+
+	/**
+	 * Creates a new BitterClient that attempts to connect to a server, then
+	 * follows the protocol of that server.
+	 * @param args the first argument must be of the form hostname:port
+	 * 			   further arguments are ignored
+	 */
     public static void main(String[] args) throws IOException {
-        Socket socket = null;
-        PrintWriter out = null;
-        BufferedReader in = null;
-        String host = null;
-        int port = Port.DEFAULT_PORT;
+		String host = null;
+		int port = Port.DEFAULT_PORT;
+		
+		// Pull host and port from command line
         try {
             host = getHost(args[0]);
             port = Port.parsePort(getPort(args[0]));
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.print("BitterClient must be called with first arugment" +
-                             " of form hostname:port\n");
+            System.err.print("BitterClient must be called with first" +
+							 " argument of form hostname:port.\n");
             System.exit(1);
         } catch (NumberFormatException e) {
-            System.err.print("Could not parse port\n");
+            System.err.print("Could not parse port.\n");
             System.exit(1);
         } catch (IllegalArgumentException e) {
-            System.err.print("Port is not valid\n");
+            System.err.print("Port is not valid.\n");
             System.exit(1);
         } catch (Exception e) {
             System.err.print("Crap, unknown exception\n");
@@ -38,38 +101,39 @@ public class BitterClient {
             System.exit(1);
         }
 
-        try {
-            socket = new Socket(host, port);
-            out = new PrintWriter(socket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(
-                    socket.getInputStream()));
-        } catch (UnknownHostException e) {
-            System.err.printf("Unknown host: %s\n", host);
-            System.exit(1);
-        } catch (IOException e) {
-            System.err.printf("Couldn't get I/O for %s\n", host);
-            System.exit(1);
-        }
+		BitterClient client = null;
+		client = new BitterClient(host, port);
+
+		try {
+			client.connect();
+		} catch (UnknownHostException e) {
+			System.err.printf("Unknown host: %s.\n", host);
+			System.exit(1);
+		} catch (IOException e) {
+			System.err.printf("Could not open IO for connection to %s.\n", host);
+			System.err.print("Make sure the right port was specified.\n");
+			System.exit(1);
+		}
 
         BufferedReader stdIn = new BufferedReader(
                               new InputStreamReader(System.in));
         String fromServer;
         String fromUser;
 
-        while ((fromServer = in.readLine()) != null) {
+		// Program loop
+        while ((fromServer = client.getServerResponse()) != null) {
             System.out.println(fromServer);
             fromUser = stdIn.readLine();
             if (fromUser != null) {
-                out.println(fromUser);
+                client.sendCommunication(fromUser);
             }
-            if (fromUser.equals("exit"))
-                break;
+            if (fromUser.equals("exit")) {
+			   	break;
+			}
         }
 
-        out.close();
-        in.close();
-        stdIn.close();
-        socket.close();
+		stdIn.close();
+		client.close(); 
     }
 
     private static String getPort(String hostAndPort) {
