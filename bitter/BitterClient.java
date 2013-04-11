@@ -71,10 +71,15 @@ public class BitterClient {
 		out.println(message);
 	}
 
+	/**
+	 * Creates a new BitterClient that attempts to connect to a server, then
+	 * follows the protocol of that server.
+	 * @param args the first argument must be of the form hostname:port
+	 * 			   further arguments are ignored
+	 */
     public static void main(String[] args) throws IOException {
 		String host = null;
 		int port = Port.DEFAULT_PORT;
-		BitterClient client = null;
 		
 		// Pull host and port from command line
         try {
@@ -96,14 +101,26 @@ public class BitterClient {
             System.exit(1);
         }
 
+		BitterClient client = null;
 		client = new BitterClient(host, port);
-		client.connect();
+
+		try {
+			client.connect();
+		} catch (UnknownHostException e) {
+			System.err.printf("Unknown host: %s.\n", host);
+			System.exit(1);
+		} catch (IOException e) {
+			System.err.printf("Could not open IO for connection to %s.\n", host);
+			System.err.print("Make sure the right port was specified.\n");
+			System.exit(1);
+		}
 
         BufferedReader stdIn = new BufferedReader(
                               new InputStreamReader(System.in));
         String fromServer;
         String fromUser;
 
+		// Program loop
         while ((fromServer = client.getServerResponse()) != null) {
             System.out.println(fromServer);
             fromUser = stdIn.readLine();
