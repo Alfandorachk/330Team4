@@ -4,8 +4,8 @@ import java.net.*;
 import java.io.*;
 
 /**
- * BitterClient connects to a server that uses the Bitter protocol and acts as
- * a liason between that server and a user interface.
+ * BitterClient connects to a server that uses the Bitter protocol and acts
+ * as a liason between that server and a user interface.
  *
  * BitterClient is modeled on the KnockKnockClient found in Oracle's sockets
  * tutorial at
@@ -83,8 +83,8 @@ public class BitterClient {
 		
 		// Pull host and port from command line
         try {
-            host = getHost(args[0]);
-            port = Port.parsePort(getPort(args[0]));
+            host = extractHost(args[0]);
+            port = Port.parsePort(extractPort(args[0]));
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.print("BitterClient must be called with first" +
 							 " argument of form hostname:port.\n");
@@ -136,11 +136,11 @@ public class BitterClient {
 		client.close(); 
     }
 
-    private static String getPort(String hostAndPort) {
+    private static String extractPort(String hostAndPort) {
         return hostAndPort.split(":")[1];
     }
 
-    private static String getHost(String hostAndPort) {
+    private static String extractHost(String hostAndPort) {
         return hostAndPort.split(":")[0];
     }
 
