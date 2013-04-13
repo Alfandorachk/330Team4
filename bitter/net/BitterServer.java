@@ -1,4 +1,4 @@
-package bitter;
+package bitter.net;
 
 import java.io.*;
 import java.net.*;

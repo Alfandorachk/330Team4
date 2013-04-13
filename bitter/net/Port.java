@@ -1,9 +1,9 @@
-package bitter;
+package bitter.net;
 
 /**
  * Port is a utility class for the bitter package.  It handles processing of
- * ports, namely, parsing a port from a string and determining whether it is a
- * valid port.
+ * ports, namely, parsing a port from a string and determining whether it 
+ * is a valid port.
  */
 public class Port {
 
@@ -41,6 +41,7 @@ public class Port {
 	 * @param port the port to be listened to.
 	 */
 	public static boolean isValidPort(int port) {
+        //TODO: implement this better
 		return port >= MIN_PORT && port <= MAX_PORT;
 	}
 
