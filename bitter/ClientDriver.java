@@ -1,77 +1,12 @@
 package bitter;
 
+import bitter.net.*;
 import java.net.*;
 import java.io.*;
 
-/**
- * BitterClient connects to a server that uses the Bitter protocol and acts as
- * a liason between that server and a user interface.
- *
- * BitterClient is modeled on the KnockKnockClient found in Oracle's sockets
- * tutorial at
- * http://docs.oracle.com/javase/tutorial/networking/sockets/examples/KnockKnockClient.java
- */
-public class BitterClient {
+public class ClientDriver {
 
-        private Socket socket;
-        private PrintWriter out;
-        private BufferedReader in;
-        private String host;
-        private int port;
-
-	/**
-	 * Creates a new BitterClient that will connect to the given host and
-	 * port.
-	 * @param host the host's IP address or FQDN
-	 * @param port the port at which to connect
-	 */
-	public BitterClient(String host, int port) {
-		this.host = host;
-		this.port = port;
-		socket = null;
-		out = null;
-		in = null;
-	}
-
-	/**
-	 * Connects to the server.
-	 *
-	 * @throws IOException if the client could not open I/O on the socket
-	 * @throws UnkownHostException if the host could not be contacted
-	 */
-	public void connect() throws IOException, UnknownHostException {
-		socket = new Socket(host, port);
-		out = new PrintWriter(socket.getOutputStream(), true);
-		in = new BufferedReader(new InputStreamReader(
-				socket.getInputStream()));
-	}
-
-	/**
-	 * Closes all connections formed in connecting to server.
-	 */
-	public void close() throws IOException {
-        out.close();
-        in.close();
-        socket.close();
-	}
-
-	/**
-	 * Gets the next communication from the server.
-	 * @return the next communication from the server
-	 */
-	public String getServerResponse() throws IOException {
-	   return in.readLine();
-	}
-
-	/**
-	 * Sends a communication to the server.
-	 * @param the communication to the server
-	 */
-	public void sendCommunication(String message) {
-		out.println(message);
-	}
-
-	/**
+    /**
 	 * Creates a new BitterClient that attempts to connect to a server, then
 	 * follows the protocol of that server.
 	 * @param args the first argument must be of the form hostname:port
@@ -83,8 +18,8 @@ public class BitterClient {
 		
 		// Pull host and port from command line
         try {
-            host = getHost(args[0]);
-            port = Port.parsePort(getPort(args[0]));
+            host = extractHost(args[0]);
+            port = Port.parsePort(extractPort(args[0]));
         } catch (ArrayIndexOutOfBoundsException e) {
             System.err.print("BitterClient must be called with first" +
 							 " argument of form hostname:port.\n");
@@ -136,12 +71,12 @@ public class BitterClient {
 		client.close(); 
     }
 
-    private static String getPort(String hostAndPort) {
+    private static String extractPort(String hostAndPort) {
         return hostAndPort.split(":")[1];
     }
 
-    private static String getHost(String hostAndPort) {
+    private static String extractHost(String hostAndPort) {
         return hostAndPort.split(":")[0];
     }
 
-} // End class BitterClient
+} // End class ClientDriver
