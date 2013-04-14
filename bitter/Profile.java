@@ -12,14 +12,12 @@ public class Profile {
     private static final BIO_MAX_LENGTH = 500;
     private static final EMAIL_MAX_LENGTH = 50;
 */   
-    public String username;
     public String firstname;
     public String lastname;
     public String email;
     public String bio;
     
-    public Profile(String username) {
-        this.username = username;
+    public Profile() {
         firstname = null;
         lastname = null;
         email = null;
