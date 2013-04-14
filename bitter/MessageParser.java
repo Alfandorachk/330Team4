@@ -11,8 +11,8 @@ public class MessageParser {
 
     private static final String USER_REGEX = "@(\\w+)";
     private static final String TOPIC_REGEX = "#(\\w+)";
-    private static final Pattern TOPIC_PATTERN = Pattern.compile(TOPIC_REGEX);
     private static final Pattern USER_PATTERN = Pattern.compile(USER_REGEX);
+    private static final Pattern TOPIC_PATTERN = Pattern.compile(TOPIC_REGEX);
 
     /**
      * Extract the names of the users that this message is a reply to.
