@@ -27,7 +27,7 @@ public class BitterServer {
 	public static void main(String[] args) throws IOException {
 		ServerSocket serverSocket = null;
 		boolean listening = true;
-		int port = Port.DEFAULT_PORT;
+		int port;
 
 		if (args.length > 0) {
             String port_arg = args[0];
@@ -38,7 +38,10 @@ public class BitterServer {
                 System.exit(1);
             } catch (IllegalArgumentException e) {
                 System.err.printf("%s is not a valid port\n", port_arg);
+                System.exit(1);
             }
+        } else {
+            port = Port.DEFAULT_PORT;
         }
 
 		try {

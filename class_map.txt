@@ -1,6 +1,8 @@
 Class               (Responsibility)
 ------------        ----------------------
 
+ClientDriver        (Program driver client-side)
+
 BitterServer        (Accepts client connection and assigns it to a thread)
 BitterServerThread  (Receives client from server; responds to client commands
                      based on protocol)
