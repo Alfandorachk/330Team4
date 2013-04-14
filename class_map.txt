@@ -11,3 +11,10 @@ BitterClient        (Accepts user input and sends it to server, outputs
                      response)
 
 Port                (Holds information about valid ports for Bitter)
+
+Timestamp           (Time a message was posted and offers comparison
+                    and pretty-formatting)
+
+
+
+Nobody reads this crap anyway
