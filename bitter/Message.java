@@ -1,12 +1,13 @@
 package bitter;
 
-import bitter.util;
+import bitter.util.*;
 
 public class Message {
 
     private String body;
     private User poster;
     private Timestamp timestamp;
+    private boolean isPrivate;
 
     /**
      * Creates a new message with the given poster and message body.
@@ -14,9 +15,10 @@ public class Message {
      * @param poster the user who posted this message
      * @param body the contents of the message body
      */
-    public Message(User poster, String body) {
+    public Message(User poster, String body, boolean isPrivate) {
         this.poster = poster;
-        this.body = contents;
+        this.body = body;
+        this.isPrivate = isPrivate;
         timestamp = new Timestamp();
     }
 
@@ -25,7 +27,7 @@ public class Message {
      *
      * @return the body of the message.
      */
-    public getBody() {
+    public String getBody() {
         return body;
     }
 
@@ -34,8 +36,17 @@ public class Message {
      *
      * @return the poster
      */
-    public getPoster() {
+    public User getPoster() {
         return poster;
+    }
+
+    /**
+     * Returns whether or not this message is private.
+     *
+     * @return true if this message is private, false otherwise
+     */
+    public boolean isPrivate() {
+        return isPrivate;
     }
 
     /**

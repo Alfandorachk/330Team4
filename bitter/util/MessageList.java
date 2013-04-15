@@ -21,7 +21,7 @@ public class MessageList implements Iterable  {
      */
     public MessageList() {
         head = tail = null;
-        length == 0;
+        length = 0;
     }
 
     /**
@@ -56,7 +56,7 @@ public class MessageList implements Iterable  {
         } else if (cur == null) {
             addNodeToTail(toAdd);
         } else {
-            addNodeToMiddle(toAdd);
+            addNodeToMiddle(toAdd, cur);
         } 
     }
 
@@ -72,10 +72,10 @@ public class MessageList implements Iterable  {
         tail = toAdd;
     }
 
-    private void addNodeToMiddle(MessageListNode toAdd) {
-        toAdd.prev = cur.prev;
-        toAdd.next = cur;
-        cur.prev = toAdd;
+    private void addNodeToMiddle(MessageListNode toAdd, MessageListNode spot) {
+        toAdd.prev = spot.prev;
+        toAdd.next = spot;
+        spot.prev = toAdd;
         toAdd.prev.next = toAdd;
     }
 
@@ -97,6 +97,30 @@ public class MessageList implements Iterable  {
         return length;
     }
 
-    //TODO: implement iterator
+    /**
+     * Return an iterator over this list.
+     *
+     * @return an iterator over this message list
+     */
+    @Override
+    public MessageListIterator iterator() {
+        return new MessageListIterator(this);
+    }
+
+	/**
+	 * Get the element at the given index.
+	 * @param index the index to get the element from
+	 * @return the element at the given index
+	 */
+	public Message get(int index) {
+		if (length <= index) {
+			throw new NoSuchElementException();
+        }
+		MessageListNode cur = head;
+		for (int i = 0; i < index; i++) {
+			cur = cur.next;
+		}
+		return cur.message;
+	}
     
 } // End class MessageList

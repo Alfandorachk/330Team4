@@ -21,14 +21,14 @@ public class User {
     /**
      * Returns the user's bitter handle.
      */
-    public getName() {
+    public String getName() {
         return username;
     }
 
     /**
      * Returns the user's profile.
      */
-    public getProfile() {
+    public Profile getProfile() {
         return profile;
     }
 

@@ -22,14 +22,19 @@ public class MessageParser {
      * @return a list of the users responded to
      */
     public static LinkedList<String> extractAddressees(String message) {
-       LinkedList<String> addressees = new LinkedList<String>();
-       Matcher matcher = USER_PATTERN.matcher(message);
+        return extractElements(USER_PATTERN, message);
+    }
 
-       while (matcher.find()) {
-           addressees.add(matcher.group(1)); 
-       }
+    private static LinkedList<String> 
+    extractElements(Pattern pattern, String str) {
+        LinkedList<String> elements = new LinkedList<String>();
+        Matcher matcher = pattern.matcher(str);
 
-       return addressees;
+        while (matcher.find()) {
+            if (!elements.contains(matcher.group(1)) {
+                elements.add(matcher.group(1));
+            }
+        }
     }
 
     /**
@@ -40,14 +45,7 @@ public class MessageParser {
      * @return a list of the topics of the message
      */
     public static LinkedList<String> extractTopics(String message) {
-       LinkedList<String> topics = new LinkedList<String>();
-       Matcher matcher = TOPIC_PATTERN.matcher(message);
-
-       while (matcher.find()) {
-           topics.add(matcher.group(1)); 
-       }
-
-       return topics;
+        return extractElements(TOPIC_PATTERN, message);
     }
 
 } // End class MessageParser

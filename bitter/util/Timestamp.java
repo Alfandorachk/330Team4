@@ -51,6 +51,7 @@ public class Timestamp implements Comparable<Timestamp> {
      *          equal to, or greater than the given time, respectively
      * @see java.util.Date#compareTo
      */
+    @Override
     public int compareTo(Timestamp ts) {
         return this.time.compareTo(ts.time);
     }
