@@ -8,10 +8,12 @@ public class IOTester {
 		FileIO testMe = new FileIO();
 		
 		String blabbity = new String("BlabbityMcBlahBlah");
-		Path fileName = Paths.get("./messages.txt");
+		String test2 = new String("Testing, testing");
+		Path fileName = Paths.get("./src/messages.txt");
 		
 		testMe.writeToFile(blabbity, fileName);
 		testMe.readFromFile(fileName);
+		testMe.writeToFile(test2, fileName);
 	}
 
 }
