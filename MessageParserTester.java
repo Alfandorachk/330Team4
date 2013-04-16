@@ -11,11 +11,13 @@ public class MessageParserTester {
         String msg3 = "@me test test test";
         String msg4 = "#this is crazy @me";
         String msg5 = "no topics no addressees";
-        String[] msgs = { msg1, msg2, msg3, msg4, msg5 };
+        String msg6 = "Redundant topics and users @bob@bob@mary #repeat" +
+                " #repeat #petrol";
+        String[] msgs = { msg1, msg2, msg3, msg4, msg5, msg6 };
 
         LinkedList<String> extracts = new LinkedList<String>();
         for (String str : msgs) {
-            System.out.println(str);
+            System.out.printf(">>%s\n", str);
             extracts = MessageParser.extractTopics(str);
             System.out.print("Topics: ");
             printList(extracts);

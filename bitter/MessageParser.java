@@ -31,10 +31,12 @@ public class MessageParser {
         Matcher matcher = pattern.matcher(str);
 
         while (matcher.find()) {
-            if (!elements.contains(matcher.group(1)) {
+            if (!elements.contains(matcher.group(1))) {
                 elements.add(matcher.group(1));
             }
         }
+
+        return elements;
     }
 
     /**
