@@ -16,7 +16,12 @@ public class MessageHandler {
 
     public MessageList getMessagesByTopic(String topic) {
         String t = TOPIC_PREFIX + topic;
-        return messageHash.getMessageList(topic);
+        return messageHash.getMessageList(t);
+    }
+
+    public MessageList getMessagesByUser(String user) {
+        String u = USER_PREFIX + user;
+        return messageHash.getMessageList(u);
     }
 
     public void addMessage(Message message) {

@@ -25,6 +25,13 @@ public class BitterProtocol {
     private User user;
     private MessageHandler mHandler;
 
+    /**
+     * Constructs a new BitterProtocol instance associated with the given
+     * User and MessageHandler.
+     *
+     * @param user the user at the other end of the connection
+     * @param mHandler the server's MessageHandler
+     */
     public BitterProtocol(User user, MessageHandler mHandler) {
         this.user = user;
         this.mHandler = mHandler;
@@ -32,12 +39,21 @@ public class BitterProtocol {
     
     public String processCommand(String command) { 
         List<String> terms = parseCommand(command);
+        String response = "";
+        for (String term: terms) System.out.println(term);
         switch (terms.get(0)) {
         case "post":
-            return (new PostMessage(user, mHandler, terms)).doAction();
+            response = (new PostMessage(user, mHandler, terms)).doAction();
+            break;
+        case "view":
+            response = (new ViewMessage(mHandler, terms)).doAction();
+            break;
         default:
-            return String.format("I do not understand command %s", command);
+            response = "I do not understand command " + command;
+            break;
         }
+
+        return response + "\nEND TRANSMISSION";
     }
 
 /*	

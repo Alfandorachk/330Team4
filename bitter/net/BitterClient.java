@@ -13,6 +13,8 @@ import java.io.*;
  */
 public class BitterClient {
 
+        private static String END_TRANSMISSION = "END TRANSMITION";
+
         private Socket socket;
         private PrintWriter out;
         private BufferedReader in;
@@ -60,7 +62,11 @@ public class BitterClient {
 	 * @return the next communication from the server
 	 */
 	public String getServerResponse() throws IOException {
-	   return in.readLine();
+       String response = "", line;
+       while (!(line = in.readLine()).equals(END_TRANSMISSION)) {
+           response += line + "\n";
+       }
+	   return response;
 	}
 
 	/**

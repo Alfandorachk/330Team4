@@ -35,7 +35,7 @@ public class BitterServerThread extends Thread {
 									new InputStreamReader(
 									socket.getInputStream()));
 			String inputLine, outputLine;
-			out.println(GREETING);
+			out.println(GREETING + "\N" + "END TRANSMISSION");
 
 			while ((inputLine = in.readLine()) != null) {
 				outputLine = protocol.processCommand(inputLine);

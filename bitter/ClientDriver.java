@@ -13,6 +13,7 @@ public class ClientDriver {
 	 * 			   further arguments are ignored
 	 */
     public static void main(String[] args) throws IOException {
+        //TODO: Refactor this puppy
 		String host = null;
 		int port = Port.DEFAULT_PORT;
 		
