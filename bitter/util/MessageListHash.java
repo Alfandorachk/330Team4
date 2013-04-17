@@ -22,6 +22,4 @@ public class MessageListHash {
         return hashmap.get(key);
     }
 
-
-
 } // End class MessageListHash

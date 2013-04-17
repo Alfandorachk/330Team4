@@ -10,7 +10,7 @@ import java.util.*;
  * sorted and incoming messages by nature should be very near the front,
  * insertion time is kept to a minimum.
  */
-public class MessageList implements Iterable  {
+public class MessageList implements Iterable<Message>  {
 
     private MessageListNode head;
     private MessageListNode tail;

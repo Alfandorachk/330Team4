@@ -2,26 +2,27 @@ package bitter.action;
 
 import bitter.*;
 import bitter.util.*;
+import java.util.*;
 
 public class ViewMessage implements Action {
 
     private static final int VIEW_TYPE = 1;
     private static final int VIEW_SUBJECT = 2;
     private static final String VIEW_COM_FORMAT =
-            "view [user|topic] <$user|$topic>"
+            "view [user|topic] <$user|$topic>";
 
     private MessageHandler mHandler;
     private MessageList mList;
-    private error;
+    private boolean error;
 
     public ViewMessage(MessageHandler mHandler, List<String> terms) {
         this.mHandler = mHandler;
         mList = null;
         error = false;
-        if (terms.get(VIEW_TYPE).toLowerCase.equals("topic") {
-            mList = mHandler.getMessagesByTopic(terms.get(VIEW_SUBJECT);
-        } else if (terms.get(VIEW_TYPE).toLowerCase.equals("user") {
-            mList = mHandler.getMessagesByUser(terms.get(VIEW_SUBJECT);
+        if (terms.get(VIEW_TYPE).toLowerCase().equals("topic")) {
+            mList = mHandler.getMessagesByTopic(terms.get(VIEW_SUBJECT));
+        } else if (terms.get(VIEW_TYPE).toLowerCase().equals("user")) {
+            mList = mHandler.getMessagesByUser(terms.get(VIEW_SUBJECT));
         } else {
             error = true;
         }
