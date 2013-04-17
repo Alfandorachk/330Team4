@@ -2,6 +2,7 @@ package bitter.net;
 
 import java.io.*;
 import java.net.*;
+import bitter.*;
 
 /**
  * BitterServer listens for incoming connections from BitterClient.  Once a
@@ -28,6 +29,7 @@ public class BitterServer {
 		ServerSocket serverSocket = null;
 		boolean listening = true;
 		int port = Port.DEFAULT_PORT;
+        MessageHandler mHandler = new MessageHandler();
 
 		if (args.length > 0) {
             String port_arg = args[0];
@@ -54,7 +56,7 @@ public class BitterServer {
 		}
 
 		while (listening)
-			new	BitterServerThread(serverSocket.accept()).start();
+			new	BitterServerThread(serverSocket.accept(), mHandler).start();
 
 		serverSocket.close();
 	}

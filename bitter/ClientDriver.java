@@ -57,7 +57,7 @@ public class ClientDriver {
 
 		// Program loop
         while ((fromServer = client.getServerResponse()) != null) {
-            System.out.println(fromServer);
+            System.out.printf("%s\n>> ", fromServer);
             fromUser = stdIn.readLine();
             if (fromUser != null) {
                 client.sendCommunication(fromUser);

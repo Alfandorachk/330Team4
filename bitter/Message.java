@@ -4,6 +4,9 @@ import bitter.util.*;
 
 public class Message {
 
+    public static boolean PRIVATE = true;
+    public static boolean PUBLIC = false;
+
     private String body;
     private User poster;
     private Timestamp timestamp;
@@ -20,6 +23,26 @@ public class Message {
         this.body = body;
         this.isPrivate = isPrivate;
         timestamp = new Timestamp();
+    }
+
+    /**
+     * Factory method that returns a new private Message.
+     *
+     * @param poster the user who posted this message
+     * @param body the contents of the message body
+     */
+    public static Message bundlePrivateMessage(User poster, String body) {
+        return new Message(poster, body, PRIVATE);
+    }
+
+    /**
+     * Factory method that returns a new public Message.
+     *
+     * @param poster the user who posted this message
+     * @param body the contents of the message body
+     */
+    public static  Message bundlePublicMessage(User poster, String body) {
+        return new Message(poster, body, PUBLIC);
     }
 
     /**
