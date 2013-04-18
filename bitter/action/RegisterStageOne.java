@@ -16,6 +16,7 @@ public class RegisterStageOne implements Action {
 
 	public RegisterStageOne(List<String> terms, UserHashMap uHash) {
 		username = "";
+		error = "";
 		if (terms.size() < 2) {
 			error = "Register format: " + REGISTER_FORMAT;
 		} else { 

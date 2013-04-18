@@ -6,28 +6,28 @@ import java.util.*;
 
 public class RegisterStageTwo implements Action {
 
-	private static final int PASSWORD = 1;
+	private static final int PASSWORD = 0;
 
-	private String error;
+	private String response;
 
 	public RegisterStageTwo(List<String> terms, UserHashMap uHash,
 			UserLookupTable lTable, String username) {
-		error = "";
+		response = "";
 		if (terms.size() < 1) {
-			error = "Need a password.  Aborting.";
+			response = "Need a password.  Aborting.";
 		} else {
 			String password = terms.get(PASSWORD);
 			uHash.changePassword(username, password);
+			System.out.print("Added password " + password + "\n");		// REMOVE
 			User user = new User(username);
 			lTable.addUser(user);
+			response = "Registration successful!"; 
 		}
 	}
 
 	@Override
 	public String doAction() {
-		if (!error.equals(""))
-			return error;
-		return "Registration successful!"; 
+		return response;
 	}
 
 } // End class RegisterStageTwo

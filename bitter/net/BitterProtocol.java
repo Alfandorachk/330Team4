@@ -19,7 +19,7 @@ import bitter.util.*;
  */
 public class BitterProtocol {
 	
-	private enum State { NORMAL, REGISTERING };
+	private enum State { NORMAL, REGISTERING, LOGGING_IN };
 
     // Everything between quotes and single words outside quotes.
     //private static final String PARSE_REGEX = 
@@ -59,13 +59,24 @@ public class BitterProtocol {
 		if (terms.isEmpty()) {
 			return "Need a command";
 		}
-		if (state == State.REGISTERING) {
+		switch (state) {
+		case REGISTERING: 
 			state = State.NORMAL;
 			response = (new RegisterStageTwo(terms, uHash, lTable,
 						saveState)).doAction();
 			saveState = "";
 			return response;
-		}
+		case LOGGING_IN:
+			state = State.NORMAL;
+			response = (new LoginStageTwo(terms, uHash, saveState)).doAction();
+			if (response.equals("Success")) {
+				user = lTable.lookupUser(saveState);
+			}
+			saveState = "";
+			return response;
+		case NORMAL:
+		default:
+		}	
         switch (terms.get(0)) {
         case "post":
             response = (new PostMessage(user, mHandler, terms)).doAction();
@@ -76,8 +87,15 @@ public class BitterProtocol {
             break;
 		case "register":
 			response = (new RegisterStageOne(terms, uHash)).doAction();
-			if (response.equals("Enter Password: ")) {
+			if (response.equals("Password: ")) {
 				state = State.REGISTERING;
+				saveState = terms.get(1);
+			}
+			break;
+		case "login":
+			response = (new Login(terms, uHash)).doAction();
+			if (response.equals("Password: ")) {
+				state = State.LOGGING_IN;
 				saveState = terms.get(1);
 			}
 			break;
