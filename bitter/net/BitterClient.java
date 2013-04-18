@@ -60,7 +60,8 @@ public class BitterClient {
 	 * @return the next communication from the server
 	 */
 	public String getServerResponse() throws IOException {
-       String response = "";
+		System.out.print("Got here: getServerResponse()\n");	// REMOVE
+	   String response = "";
 	   String line;
        while ((line = in.readLine()) != null) {
 		   if (line.equals("exit"))
@@ -68,7 +69,7 @@ public class BitterClient {
 
            response += line + "\n";
        }
-	   System.out.print("END LOOP OUT \n");
+	   System.out.print("END LOOP OUT \n");	// REMOVE
 
 	   return response;
 	}
