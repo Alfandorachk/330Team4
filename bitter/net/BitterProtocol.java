@@ -51,7 +51,8 @@ public class BitterProtocol {
             response = (new PostMessage(user, mHandler, terms)).doAction();
             break;
         case "view":
-            response = (new ViewMessage(mHandler, terms)).doAction();
+			Action viewer = ViewerFactory.makeViewer(terms, mHandler);
+            response = viewer.doAction();
             break;
         default:
             response = "I do not understand command " + command;

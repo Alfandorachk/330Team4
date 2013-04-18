@@ -17,7 +17,7 @@ public class ViewMessage implements Action {
 	private String searchBy;
 	private String searchTerm;
 
-    public ViewMessage(MessageHandler mHandler, List<String> terms) {
+    public ViewMessage(List<String> terms, MessageHandler mHandler) {
         this.mHandler = mHandler;
         mList = null;
         error = false;
