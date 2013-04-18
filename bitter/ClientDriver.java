@@ -57,9 +57,7 @@ public class ClientDriver {
         String fromUser;
 
 		// Program loop
-		System.out.print("Entering Program loop\n");	// REMOVE
         while ((fromServer = client.getServerResponse()) != null) {
-			System.out.print("Got here: inside loop\n");	// REMOVE
             System.out.printf("%s\n>> ", fromServer);
             fromUser = stdIn.readLine();
             if (fromUser != null) {

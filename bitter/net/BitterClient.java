@@ -60,18 +60,21 @@ public class BitterClient {
 	 * @return the next communication from the server
 	 */
 	public String getServerResponse() throws IOException {
-		System.out.print("Got here: getServerResponse()\n");	// REMOVE
 	   String response = "";
 	   String line;
-       while ((line = in.readLine()) != null) {
-		   if (line.equals("exit"))
-			   break;
+       //while ((line = in.readLine()) != null) {
+	   line = in.readLine().replace("~~~~$$$$~~~~xxxx~~~~", "\n");
+/*		   if (line.equals("exit"))     // One of these
+			   break;					// may have to
+		   if (line.equals("null"))		// go
+			   break;					// doncherknow
+*/
 
            response += line + "\n";
-       }
-	   System.out.print("END LOOP OUT \n");	// REMOVE
+       //}
 
-	   return response;
+	   //return response;
+	   return line;
 	}
 
 	/**

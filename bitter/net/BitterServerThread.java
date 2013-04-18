@@ -24,11 +24,9 @@ public class BitterServerThread extends Thread {
 		super("BitterServerThread");
 		this.socket = socket;
         this.mHandler = mHandler;
-		System.out.print("Got here:  Thread constructor\n"); // REMOVE
 	}
 
 	public void run() {
-		System.out.print("Got here: Thread run()\n"); //REMOVE
         user = getUser();
         protocol = new BitterProtocol(user, mHandler);
 		try {
@@ -42,7 +40,6 @@ public class BitterServerThread extends Thread {
 
 			while ((inputLine = in.readLine()) != null) {
 				outputLine = protocol.processCommand(inputLine);
-				System.out.printf("Responding with %s\n", outputLine); // REMOVE
 				out.println(outputLine);
 				if (outputLine.equals("exit"))
 					break;

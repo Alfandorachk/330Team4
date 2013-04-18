@@ -44,7 +44,7 @@ public class BitterProtocol {
         String response = "";
         for (String term: terms) System.out.println(term);
 		if (terms.isEmpty()) {
-			return "";
+			return "Need a command";
 		}
         switch (terms.get(0)) {
         case "post":
@@ -58,7 +58,8 @@ public class BitterProtocol {
             break;
         }
 
-        return response; 
+		// This is stupid
+        return response.replace("\n", "~~~~$$$$~~~~xxxx~~~~");
     }
 
     private List<String> parseCommand(String command) {
