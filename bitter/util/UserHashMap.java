@@ -2,7 +2,7 @@ package bitter.util;
 
 import java.util.concurrent.*;
 
-class UserHashMap {
+public class UserHashMap {
 
 	private ConcurrentHashMap<String, String> hashMap;
 
@@ -16,6 +16,10 @@ class UserHashMap {
 
 	public void putUser(String username, String password) {
 		hashMap.putIfAbsent(username, password);
+	}
+
+	public void changePassword(String username, String password) {
+		hashMap.put(username, password);
 	}
 
 	public String getPassword(String username) {

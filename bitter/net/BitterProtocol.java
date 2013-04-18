@@ -18,6 +18,8 @@ import bitter.util.*;
  * http://docs.oracle.com/javase/tutorial/networking/sockets/examples/KnockKnockProtocol.java
  */
 public class BitterProtocol {
+	
+	private enum State { NORMAL, REGISTERING };
 
     // Everything between quotes and single words outside quotes.
     //private static final String PARSE_REGEX = 
@@ -25,10 +27,13 @@ public class BitterProtocol {
 	private static final String PARSE_REGEX =
 			"(\"[^\"]*\"|\\w+)";
     private static final Pattern PARSE_PATTERN = Pattern.compile(PARSE_REGEX);
+
     private User user;
     private MessageHandler mHandler;
 	private UserLookupTable lTable;
 	private UserHashMap uHash;
+	private State state; 
+	private String saveState;
 
     /**
      * Constructs a new BitterProtocol instance associated with the given
@@ -43,14 +48,23 @@ public class BitterProtocol {
         this.mHandler = mHandler;
 		this.lTable = lTable;
 		this.uHash = uHash;
+		state = State.NORMAL;
+		saveState = "";
     }
     
     public String processCommand(String command) { 
         List<String> terms = parseCommand(command);
         String response = "";
-        for (String term: terms) System.out.println(term);
+        //for (String term: terms) System.out.println(term);  // REMOVE
 		if (terms.isEmpty()) {
 			return "Need a command";
+		}
+		if (state == State.REGISTERING) {
+			state = State.NORMAL;
+			response = (new RegisterStageTwo(terms, uHash, lTable,
+						saveState)).doAction();
+			saveState = "";
+			return response;
 		}
         switch (terms.get(0)) {
         case "post":
@@ -60,6 +74,13 @@ public class BitterProtocol {
 			Action viewer = ViewerFactory.makeViewer(terms, mHandler, lTable);
             response = viewer.doAction();
             break;
+		case "register":
+			response = (new RegisterStageOne(terms)).doAction();
+			if (response.equals("Enter Password: ")) {
+				state = State.REGISTERING;
+				saveState = terms.get(1);
+			}
+			break;
         default:
             response = "I do not understand command " + command;
             break;
