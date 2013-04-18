@@ -63,13 +63,11 @@ public class BitterClient {
        String response = "";
 	   String line;
        while ((line = in.readLine()) != null) {
-		   System.err.printf("LINE IS %s\n", line);
-		   if (line.equals("null")) {
+		   if (line.equals("exit"))
 			   break;
-		   }
+
            response += line + "\n";
        }
-	   System.err.printf("END LOOP\n");
 	   System.out.print("END LOOP OUT \n");
 
 	   return response;

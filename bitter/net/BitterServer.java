@@ -55,6 +55,8 @@ public class BitterServer {
 			System.exit(1);
 		}
 
+		System.out.printf("Server started; listening on port %d\n", port);
+
 		while (listening)
 			new	BitterServerThread(serverSocket.accept(), mHandler).start();
 
