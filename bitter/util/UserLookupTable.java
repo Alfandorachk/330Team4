@@ -40,7 +40,7 @@ public class UserLookupTable {
 	public User addUser(User user) {
 		String username = user.getName(); 
 		User prevVal = userMap.get(username);
-		if (!userMap.hasKey(username)) {
+		if (!userMap.containsKey(username)) {
 			userMap.putIfAbsent(username, user);
 		}
 		return prevVal;
