@@ -14,14 +14,14 @@ import bitter.util.*;
  */
 public class ServerSave {
 
-	public static void ServerSaver(MessageListHash mHash, UserHashMap uHash,
+	public static void write(MessageHandler mHash, UserHashMap uHash,
 			UserLookupTable lTable) {
 
 		FileOutputStream f_out;
 		ObjectOutputStream obj_out;
 
 		try {
-			f_out = new FileOutputStream("listhash.data");
+			f_out = new FileOutputStream("messagehandler.data");
 			obj_out = new ObjectOutputStream(f_out);
 			obj_out.writeObject(mHash);
 
@@ -56,6 +56,16 @@ public class ServerSave {
 			System.exit(1);
 		}
 	
+	}
+
+	public static Object read(String file) 
+	throws IOException, ClassNotFoundException {
+
+		FileInputStream fIn = new FileInputStream(file);
+		ObjectInputStream objIn = new ObjectInputStream(fIn);
+		
+		Object obj = objIn.readObject();
+		return obj;
 	}
 /*
     FileOutputStream f_out = new FileOutputStream("myobject.data");

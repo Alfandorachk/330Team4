@@ -5,7 +5,7 @@ import bitter.*;
 /**
  * Simple Data Transfer Object message node.
  */
-public class MessageListNode {
+public class MessageListNode implements java.io.Serializable {
     public MessageListNode prev;
     public MessageListNode next;
     public Message message;

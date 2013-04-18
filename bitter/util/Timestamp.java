@@ -7,7 +7,7 @@ import java.text.DateFormat;
 /**
  * Provides an easy-to-use timestamp with a standard output format.
  */
-public class Timestamp implements Comparable<Timestamp> {
+public class Timestamp implements Comparable<Timestamp>, java.io.Serializable {
 
     private static final String format = "EEE, yyyy.MM.dd 'at' HH:mm z";
     private static final DateFormat formatter = new SimpleDateFormat(format);

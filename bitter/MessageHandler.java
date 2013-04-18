@@ -3,7 +3,7 @@ package bitter;
 import bitter.util.*;
 import java.util.*;
 
-public class MessageHandler {
+public class MessageHandler implements java.io.Serializable {
     
     public static final String TOPIC_PREFIX = "#";
     public static final String USER_PREFIX = "@";

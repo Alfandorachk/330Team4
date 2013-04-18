@@ -21,14 +21,16 @@ public class BitterServerThread extends Thread {
     private BitterProtocol protocol;
 	private UserLookupTable lTable;
 	private UserHashMap uHash;
+	private BitterServer server;
 
 	public BitterServerThread(Socket socket, MessageHandler mHandler,
-			UserLookupTable lTable, UserHashMap uHash) {
+			UserLookupTable lTable, UserHashMap uHash, BitterServer server) {
 		super("BitterServerThread");
 		this.socket = socket;
         this.mHandler = mHandler;
 		this.lTable = lTable;
 		this.uHash = uHash;
+		this.server = server;
 	}
 
 	public void run() {
@@ -42,9 +44,12 @@ public class BitterServerThread extends Thread {
 			out.println(GREETING);
 
 			while ((inputLine = in.readLine()) != null) {
-				if (inputLine.equals("exit"))
+				if (inputLine.equals("exit")) {
+					server.writeServer();
 					break;
+				}
 				outputLine = protocol.processCommand(inputLine);
+				server.writeServer();
 				out.println(outputLine);
 			} 
 

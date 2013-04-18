@@ -23,10 +23,39 @@ public class BitterServer {
 	private boolean listening;
 
 	public BitterServer() {
-        mHandler = new MessageHandler();
-		lTable = new UserLookupTable();
-		uHash = new UserHashMap();
+		try {
+			mHandler = (MessageHandler) ServerSave.read("messagehandler.data");
+		} catch (IOException e) {
+			System.out.println(
+					"Could not read MessageHandler file, defaulting.");
+			mHandler = new MessageHandler();
+		} catch (ClassNotFoundException e) {
+			System.out.println("Class not found: MessageHandler, defaulting.");
+			mHandler = new MessageHandler();
+		}
+		try {
+			lTable = (UserLookupTable) ServerSave.read("lookuptable.data");
+		} catch (IOException e) {
+			System.out.println("Could not read UserLookup file, defaulting.");
+			lTable = new UserLookupTable();
+		} catch (ClassNotFoundException e) {
+			System.out.println("Class not found: UserLookupTable, defaulting.");
+			lTable = new UserLookupTable();
+		}
+		try {
+			uHash = (UserHashMap) ServerSave.read("userhash.data");
+		} catch (IOException e) {
+			System.out.println("Could not read UserHash file, defaulting.");
+			uHash = new UserHashMap();
+		} catch (ClassNotFoundException e) {
+			System.out.println("Class not found: UserHashMap, defaulting.");
+			uHash = new UserHashMap();
+		}
 		listening = true;
+	}
+
+	public synchronized void writeServer() {
+		ServerSave.write(mHandler, uHash, lTable);
 	}
 
 	/**
@@ -75,7 +104,7 @@ public class BitterServer {
 
 		while (server.listening)
 			new	BitterServerThread(serverSocket.accept(), server.mHandler,
-					server.lTable, server.uHash).start();
+					server.lTable, server.uHash, server).start();
 
 		serverSocket.close();
 	}
