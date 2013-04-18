@@ -6,12 +6,14 @@ import bitter.util.*;
 
 public class ViewerFactory {
 
+	private static final int VIEW_TYPE = 1;
+
 	public static Action makeViewer(List<String> terms,
 			MessageHandler mHandler, UserLookupTable lookupTable) {
-		if (terms.size() < 2 || terms.get(2).equals("user") ||
-				terms.get(2).equals("topic")) {
+		if (terms.size() < 2 || terms.get(VIEW_TYPE).equals("user") ||
+				terms.get(VIEW_TYPE).equals("topic")) {
 			return new ViewMessage(terms, mHandler); 
-		} else if (terms.get(2).equals("profile")) {
+		} else if (terms.get(VIEW_TYPE).equals("profile")) {
 			return new ViewProfile(terms, lookupTable);
 		} else {
 			return new ViewMessage(terms, mHandler); 

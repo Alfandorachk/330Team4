@@ -33,7 +33,7 @@ public class ViewProfile implements Action {
 		if (!error.equals(""))
 			return error;
 		String results = "";
-		results += "Name: " + profile.firstname + profile.lastname + "\n";
+		results += "Name: " + profile.firstname + " " + profile.lastname + "\n";
 		results += "E-mail: " + profile.email + "\n";
 		results += "Bio: " + profile.bio + "\n";	
 
