@@ -75,7 +75,7 @@ public class BitterProtocol {
             response = viewer.doAction();
             break;
 		case "register":
-			response = (new RegisterStageOne(terms)).doAction();
+			response = (new RegisterStageOne(terms, uHash)).doAction();
 			if (response.equals("Enter Password: ")) {
 				state = State.REGISTERING;
 				saveState = terms.get(1);

@@ -32,7 +32,7 @@ public class BitterServer {
 		int port = Port.DEFAULT_PORT;
         MessageHandler mHandler = new MessageHandler();
 		UserLookupTable lTable = new UserLookupTable();
-		UserHashMaph uHash = new UserHashMap();
+		UserHashMap uHash = new UserHashMap();
 
 		if (args.length > 0) {
             String port_arg = args[0];

@@ -1,8 +1,10 @@
 package bitter.action;
 
 import bitter.util.*;
+import bitter.*;
+import java.util.*;
 
-public class RegisterStageTwo {
+public class RegisterStageTwo implements Action {
 
 	private static final int PASSWORD = 1;
 
@@ -15,14 +17,14 @@ public class RegisterStageTwo {
 			error = "Need a password.  Aborting.";
 		} else {
 			String password = terms.get(PASSWORD);
-			uhash.changePassword(username, password);
+			uHash.changePassword(username, password);
 			User user = new User(username);
-			lTable.addUser(username, user);
+			lTable.addUser(user);
 		}
 	}
 
 	@Override
-	public String doStuff() {
+	public String doAction() {
 		if (!error.equals(""))
 			return error;
 		return "Registration successful!"; 

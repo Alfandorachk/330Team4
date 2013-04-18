@@ -4,7 +4,7 @@ import bitter.*;
 import bitter.util.*;
 import java.util.*;
 
-class RegisterStageOne implements Action {
+public class RegisterStageOne implements Action {
 
 	private static final String REGISTER_FORMAT =
 		"register <$desired_name>";
@@ -14,7 +14,7 @@ class RegisterStageOne implements Action {
 	private UserHashMap hashMap;
 	private String error;
 
-	public Register (List<String> terms, UserHashMap uHash) {
+	public RegisterStageOne(List<String> terms, UserHashMap uHash) {
 		username = "";
 		if (terms.size() < 2) {
 			error = "Register format: " + REGISTER_FORMAT;
