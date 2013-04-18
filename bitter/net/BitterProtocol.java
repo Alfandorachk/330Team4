@@ -19,8 +19,10 @@ import bitter.action.*;
 public class BitterProtocol {
 
     // Everything between quotes and single words outside quotes.
-    private static final String PARSE_REGEX = 
-            "((<=[^\"]*\").*(?=[^\"]*\")|\\w+)";
+    //private static final String PARSE_REGEX = 
+    //        "((<=\"[^\"]*).*(?=[^\"]*\")|\\w+)";
+	private static final String PARSE_REGEX =
+			"(\"[^\"]*\"|\\w+)";
     private static final Pattern PARSE_PATTERN = Pattern.compile(PARSE_REGEX);
     private User user;
     private MessageHandler mHandler;
@@ -41,6 +43,9 @@ public class BitterProtocol {
         List<String> terms = parseCommand(command);
         String response = "";
         for (String term: terms) System.out.println(term);
+		if (terms.isEmpty()) {
+			return "END TRANSMISSION";
+		}
         switch (terms.get(0)) {
         case "post":
             response = (new PostMessage(user, mHandler, terms)).doAction();
@@ -56,16 +61,6 @@ public class BitterProtocol {
         return response + "\nEND TRANSMISSION";
     }
 
-/*	
-	public String processCommand(String command) {
-		String output = null;
-        if (command == null) 
-            output = "Hello?\n";
-        else
-            output = new String(command);
-		return output;
-	}
-*/
     private List<String> parseCommand(String command) {
         int arrayLength = 5;
         List<String> terms = new ArrayList<String>(arrayLength);
@@ -75,11 +70,5 @@ public class BitterProtocol {
         }
         return terms;
     }
-/*
-    private Message bundleMessage(User user, String content,
-            boolean isPrivate) {
-        return new Message(user, content, isPrivate);
-    }
-*/        
-		
+
 } // End class BitterProtocol

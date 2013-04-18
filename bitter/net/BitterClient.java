@@ -13,13 +13,11 @@ import java.io.*;
  */
 public class BitterClient {
 
-        private static String END_TRANSMISSION = "END TRANSMITION";
-
-        private Socket socket;
-        private PrintWriter out;
-        private BufferedReader in;
-        private String host;
-        private int port;
+	private Socket socket;
+	private PrintWriter out;
+	private BufferedReader in;
+	private String host;
+	private int port;
 
 	/**
 	 * Creates a new BitterClient that will connect to the given host and
@@ -63,9 +61,13 @@ public class BitterClient {
 	 */
 	public String getServerResponse() throws IOException {
        String response = "", line;
-       while (!(line = in.readLine()).equals(END_TRANSMISSION)) {
+       while ((line = in.readLine()) != null) {
+		   if (line.equals("END_TRANSMISSION")) {
+			   break;
+		   }
            response += line + "\n";
        }
+
 	   return response;
 	}
 
