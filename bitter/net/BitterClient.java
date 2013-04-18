@@ -70,6 +70,7 @@ public class BitterClient {
            response += line + "\n";
        }
 	   System.err.printf("END LOOP\n");
+	   System.out.print("END LOOP OUT \n");
 
 	   return response;
 	}
