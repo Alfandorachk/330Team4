@@ -65,4 +65,12 @@ public class User implements java.io.Serializable{
 		return subTo.contains(name);
 	}
 
+	/**
+	 * Returns a list of all users subscribed to.
+	 * @return a list of all users subscribed to
+	 */
+	public List<User> getSubscriptions() {
+		return subTo;
+	}
+
 }

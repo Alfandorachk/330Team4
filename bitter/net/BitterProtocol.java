@@ -65,18 +65,21 @@ public class BitterProtocol {
 			response = (new RegisterStageTwo(terms, uHash, lTable,
 						saveState)).doAction();
 			saveState = "";
-			return response;
+			return filter(response);
 		case LOGGING_IN:
 			state = State.NORMAL;
 			response = (new LoginStageTwo(terms, uHash, saveState)).doAction();
 			if (response.equals("Success")) {
 				user = lTable.lookupUser(saveState);
+				response += "\n";
+				response += (new LoginPrint(mHandler, user)).doAction();
 			}
 			saveState = "";
-			return response;
+			return filter(response);
 		case NORMAL:
 		default:
 		}	
+
         switch (terms.get(0)) {
         case "post":
             response = (new PostMessage(user, mHandler, terms)).doAction();
@@ -100,13 +103,22 @@ public class BitterProtocol {
 				saveState = terms.get(1);
 			}
 			break;
+		case "logout":
+			response = (new Logout()).doAction();
+			if (response.equals("Logged out")) {
+				user = null;
+			}
+			break;
+		case "subscribe":
+			response = (new Subscribe(terms, user, lTable)).doAction();
+			break;
         default:
             response = "I do not understand command " + command;
             break;
         }
 
 		// This is stupid
-        return response.replace("\n", "~~~~$$$$~~~~xxxx~~~~");
+        return filter(response);
     }
 
     private List<String> parseCommand(String command) {
@@ -118,5 +130,9 @@ public class BitterProtocol {
         }
         return terms;
     }
+
+	private String filter(String str) {
+        return str.replace("\n", "~~~~$$$$~~~~xxxx~~~~");
+	}
 
 } // End class BitterProtocol

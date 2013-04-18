@@ -18,7 +18,6 @@ public class RegisterStageTwo implements Action {
 		} else {
 			String password = terms.get(PASSWORD);
 			uHash.changePassword(username, password);
-			System.out.print("Added password " + password + "\n");		// REMOVE
 			User user = new User(username);
 			lTable.addUser(user);
 			response = "Registration successful!"; 
