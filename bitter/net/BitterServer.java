@@ -32,6 +32,7 @@ public class BitterServer {
 		int port = Port.DEFAULT_PORT;
         MessageHandler mHandler = new MessageHandler();
 		UserLookupTable lTable = new UserLookupTable();
+		UserHashMaph uHash = new UserHashMap();
 
 		if (args.length > 0) {
             String port_arg = args[0];
@@ -61,7 +62,7 @@ public class BitterServer {
 
 		while (listening)
 			new	BitterServerThread(serverSocket.accept(), mHandler,
-					lTable).start();
+					lTable, uHash).start();
 
 		serverSocket.close();
 	}

@@ -21,19 +21,21 @@ public class BitterServerThread extends Thread {
     private BitterProtocol protocol;
 	private UserLookupTable lTable;
     private User user;
+	private UserHashMap uHash;
 
 	public BitterServerThread(Socket socket, MessageHandler mHandler,
-			UserLookupTable lTable) {
+			UserLookupTable lTable, UserHashMap uHash) {
 		super("BitterServerThread");
 		this.socket = socket;
         this.mHandler = mHandler;
 		this.lTable = lTable;
+		this.uHash = uHash;
 	}
 
 	public void run() {
         user = getUser();   // FOR TESTING PHASE ONLY
 		lTable.addUser(user);	// FOR TESTING PHASE ONLY
-        protocol = new BitterProtocol(user, mHandler, lTable);
+        protocol = new BitterProtocol(user, mHandler, lTable, uHash);
 		try {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(
