@@ -1,20 +1,25 @@
 package bitter.util;
 
-import java.util.concurrent;
+import java.util.concurrent.*;
 
 class UserHashMap {
 
 	private ConcurrentHashMap<String, String> hashMap;
 
-	public RegistrationHashMap() {
+	public UserHashMap() {
 		hashMap = new ConcurrentHashMap<String,String>();
 	}
 
-	public void putRegistrant(String UN, String pass) {
-		hashMap.put(UN, pass);
+	public boolean containsKey(String username) {
+		return hashMap.containsKey(username);
 	}
 
-	public void getRegistrants () {
-		hashMap.elements();
+	public void putUser(String username, String password) {
+		hashMap.putIfAbsent(username, password);
 	}
-}
+
+	public String getPassword(String username) {
+		return hashMap.get(username);
+	}
+
+} // End class UserHashMap

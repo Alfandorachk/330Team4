@@ -28,6 +28,7 @@ public class BitterProtocol {
     private User user;
     private MessageHandler mHandler;
 	private UserLookupTable lTable;
+	private UserHashMap uHash;
 
     /**
      * Constructs a new BitterProtocol instance associated with the given
@@ -37,10 +38,11 @@ public class BitterProtocol {
      * @param mHandler the server's MessageHandler
      */
     public BitterProtocol(User user, MessageHandler mHandler,
-			UserLookupTable lTable) {
+			UserLookupTable lTable, UserHashMap uHash) {
         this.user = user;
         this.mHandler = mHandler;
 		this.lTable = lTable;
+		this.uHash = uHash;
     }
     
     public String processCommand(String command) { 
