@@ -48,7 +48,7 @@ public class MessageList implements Iterable<Message>  {
         MessageListNode cur; 
         Timestamp toAddTime = toAdd.message.getTime();
         for(cur = head; 
-            cur.message.getTime().compareTo(toAddTime) < 0 && cur != null;
+            cur != null && cur.message.getTime().compareTo(toAddTime) < 0;
             cur = cur.next)
             ;
         if (cur == head) {

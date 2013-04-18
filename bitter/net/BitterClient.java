@@ -63,13 +63,13 @@ public class BitterClient {
        String response = "";
 	   String line;
        while ((line = in.readLine()) != null) {
-		   System.out.printf("LINE IS %s\n", line);
-		   if (line.contains("END TRANSMISSION")) {
-			   System.out.print("IT CONTAINS IT BLARG\n");
+		   System.err.printf("LINE IS %s\n", line);
+		   if (line.equals("null")) {
 			   break;
 		   }
            response += line + "\n";
        }
+	   System.err.printf("END LOOP\n");
 
 	   return response;
 	}

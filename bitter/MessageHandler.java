@@ -36,7 +36,8 @@ public class MessageHandler {
         for (String key : keys) {
             messageHash.putMessage(TOPIC_PREFIX + key, message);
         }
-		messageHash.putMessage(message.getPoster().getName(), message);
+		messageHash.putMessage(USER_PREFIX + message.getPoster().getName(), 
+				message);
     }
 
 } // End class MessageHandler
