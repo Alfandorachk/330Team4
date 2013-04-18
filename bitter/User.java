@@ -12,7 +12,7 @@ public class User {
 
     private String username;
     private Profile profile;
-    private ArrayList subTo;
+    private ArrayList<User> subTo;
 
     /**
      * Creates a new user with the given name and an empty profile.
@@ -20,7 +20,7 @@ public class User {
     public User(String username) {
         this.username = username;
         profile = new Profile();
-        subTo = new ArrayList();
+        subTo = new ArrayList<User>();
         
     }
 

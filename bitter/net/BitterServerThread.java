@@ -3,6 +3,7 @@ package bitter.net;
 import java.net.*;
 import java.io.*;
 import bitter.*;
+import bitter.util.*;
 
 /**
  * BitterServerThread handles a single connection from a client for
@@ -18,17 +19,21 @@ public class BitterServerThread extends Thread {
 	private Socket socket = null;
     private MessageHandler mHandler;
     private BitterProtocol protocol;
+	private UserLookupTable lTable;
     private User user;
 
-	public BitterServerThread(Socket socket, MessageHandler mHandler) {
+	public BitterServerThread(Socket socket, MessageHandler mHandler,
+			UserLookupTable lTable) {
 		super("BitterServerThread");
 		this.socket = socket;
         this.mHandler = mHandler;
+		this.lTable = lTable;
 	}
 
 	public void run() {
-        user = getUser();
-        protocol = new BitterProtocol(user, mHandler);
+        user = getUser();   // FOR TESTING PHASE ONLY
+		lTable.addUser(user);	// FOR TESTING PHASE ONLY
+        protocol = new BitterProtocol(user, mHandler, lTable);
 		try {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(
@@ -38,7 +43,7 @@ public class BitterServerThread extends Thread {
 			out.println(GREETING);
 
 			while ((inputLine = in.readLine()) != null) {
-				if (outputLine.equals("exit"))
+				if (inputLine.equals("exit"))
 					break;
 				outputLine = protocol.processCommand(inputLine);
 				out.println(outputLine);

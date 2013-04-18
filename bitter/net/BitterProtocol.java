@@ -6,6 +6,7 @@ import java.util.regex.*;
 import java.util.*;
 import bitter.*;
 import bitter.action.*;
+import bitter.util.*;
 
 /**
  * BitterProtocol is the protocol for the BitterClient/BitterServer
@@ -26,6 +27,7 @@ public class BitterProtocol {
     private static final Pattern PARSE_PATTERN = Pattern.compile(PARSE_REGEX);
     private User user;
     private MessageHandler mHandler;
+	private UserLookupTable lTable;
 
     /**
      * Constructs a new BitterProtocol instance associated with the given
@@ -34,9 +36,11 @@ public class BitterProtocol {
      * @param user the user at the other end of the connection
      * @param mHandler the server's MessageHandler
      */
-    public BitterProtocol(User user, MessageHandler mHandler) {
+    public BitterProtocol(User user, MessageHandler mHandler,
+			UserLookupTable lTable) {
         this.user = user;
         this.mHandler = mHandler;
+		this.lTable = lTable;
     }
     
     public String processCommand(String command) { 
@@ -51,7 +55,7 @@ public class BitterProtocol {
             response = (new PostMessage(user, mHandler, terms)).doAction();
             break;
         case "view":
-			Action viewer = ViewerFactory.makeViewer(terms, mHandler);
+			Action viewer = ViewerFactory.makeViewer(terms, mHandler, lTable);
             response = viewer.doAction();
             break;
         default:

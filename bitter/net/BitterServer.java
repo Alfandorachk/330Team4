@@ -3,6 +3,7 @@ package bitter.net;
 import java.io.*;
 import java.net.*;
 import bitter.*;
+import bitter.util.*;
 
 /**
  * BitterServer listens for incoming connections from BitterClient.  Once a
@@ -30,6 +31,7 @@ public class BitterServer {
 		boolean listening = true;
 		int port = Port.DEFAULT_PORT;
         MessageHandler mHandler = new MessageHandler();
+		UserLookupTable lTable = new UserLookupTable();
 
 		if (args.length > 0) {
             String port_arg = args[0];
@@ -58,7 +60,8 @@ public class BitterServer {
 		System.out.printf("Server started; listening on port %d\n", port);
 
 		while (listening)
-			new	BitterServerThread(serverSocket.accept(), mHandler).start();
+			new	BitterServerThread(serverSocket.accept(), mHandler,
+					lTable).start();
 
 		serverSocket.close();
 	}
