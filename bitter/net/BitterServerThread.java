@@ -38,10 +38,10 @@ public class BitterServerThread extends Thread {
 			out.println(GREETING);
 
 			while ((inputLine = in.readLine()) != null) {
-				outputLine = protocol.processCommand(inputLine);
-				out.println(outputLine);
 				if (outputLine.equals("exit"))
 					break;
+				outputLine = protocol.processCommand(inputLine);
+				out.println(outputLine);
 			} 
 
             out.close();
