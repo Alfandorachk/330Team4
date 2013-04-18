@@ -46,5 +46,9 @@ public class User {
             return;
         subTo.add(name);
     }
+    public boolean removeSub(User name){
+        return subTo.remove(name);
+    }
+  
 
 }
