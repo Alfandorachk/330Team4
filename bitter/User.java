@@ -5,10 +5,14 @@ package bitter;
  * probably do without, what with all the hashes we're using.  Username is just
  * a key with our current system, isn't it?
  */
+
+import java.util.*;
+
 public class User {
 
     private String username;
     private Profile profile;
+    private ArrayList subTo;
 
     /**
      * Creates a new user with the given name and an empty profile.
@@ -16,6 +20,8 @@ public class User {
     public User(String username) {
         this.username = username;
         profile = new Profile();
+        subTo = new ArrayList();
+        
     }
 
     /**
@@ -30,6 +36,15 @@ public class User {
      */
     public Profile getProfile() {
         return profile;
+    }
+    
+    /**
+     * Adds a username to subTo.
+     */
+    public void addSub (User name){
+        if(subTo.contains(name))
+            return;
+        subTo.add(name);
     }
 
 }
