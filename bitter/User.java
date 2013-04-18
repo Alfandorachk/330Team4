@@ -47,7 +47,6 @@ public class User {
         subTo.add(name);
     }
     public boolean removeSub(User name){
-        boolean removed;
         return subTo.remove(name);
     }
   
