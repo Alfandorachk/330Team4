@@ -46,6 +46,12 @@ public class User {
             return;
         subTo.add(name);
     }
+    
+    /**
+     * Removes a User from subscribers subscription list. 
+     * @param name User to unsubscribe from
+     * @return boolean weather the unsubcription happened or not
+     */
     public boolean removeSub(User name){
         return subTo.remove(name);
     }

@@ -1,5 +1,10 @@
 package bitter.action;
 
+/**
+ * Unsubscribe is an action intended for the Bitter system; it searches for
+ * the specified user to unsubscribe from and unsubscribes them 
+ * and in doAction() tells the user what happened.
+ */
 import bitter.*;
 import bitter.net.*;
 import bitter.util.*;
@@ -20,11 +25,12 @@ public class Unsubscribe implements Action {
         private UserLookupTable look;
         
     /**
-     * Searches for a user for the subscriber to subscribe to.
+     * Searches for a user for the subscriber to unsubscribe from and
+     * unsubscribes them. 
      * 
      * @param terms the list of terms the user entered as a command
      * @param subscriber the user doing the subscribing
-     * @param users a table of all current users
+     * @param look a table of all current users
      */
     public Unsubscribe(List<String> terms, User subscriber, UserLookupTable look){
         this.users = users;
@@ -48,8 +54,7 @@ public class Unsubscribe implements Action {
     }
     
     /**
-     * Adds the specified user to a list of users the subscriber is
-     * subscribed to.
+     * Tells the user if the unsubscription was successful.
      * @return a string in human-readable form that indicates what happened
      */
     @Override

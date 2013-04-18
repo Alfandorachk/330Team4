@@ -1,7 +1,7 @@
 package bitter.action;
 
 /**
- * SubscribeUser is an action intended for the Bitter system; it searches for
+ * Subscribe is an action intended for the Bitter system; it searches for
  * the specified user to subscribe to and in doAction() subscribes to that user.
  */
 import bitter.*;
