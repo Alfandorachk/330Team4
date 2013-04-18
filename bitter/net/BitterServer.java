@@ -16,6 +16,19 @@ import bitter.util.*;
  */
 public class BitterServer {
 
+
+	public MessageHandler mHandler;
+	public UserLookupTable lTable;
+	public UserHashMap uHash;
+	private boolean listening;
+
+	public BitterServer() {
+        mHandler = new MessageHandler();
+		lTable = new UserLookupTable();
+		uHash = new UserHashMap();
+		listening = true;
+	}
+
 	/**
 	 * Listens for connections from BitterClient, and passes them off to
 	 * BitterServerThread.  BitterServer listens to the port passed in from the
@@ -28,12 +41,12 @@ public class BitterServer {
 	 */
 	public static void main(String[] args) throws IOException {
 		ServerSocket serverSocket = null;
-		boolean listening = true;
 		int port = Port.DEFAULT_PORT;
-        MessageHandler mHandler = new MessageHandler();
+		BitterServer server = new BitterServer();
+/*        MessageHandler mHandler = new MessageHandler();
 		UserLookupTable lTable = new UserLookupTable();
 		UserHashMap uHash = new UserHashMap();
-
+*/
 		if (args.length > 0) {
             String port_arg = args[0];
             try {
@@ -60,9 +73,9 @@ public class BitterServer {
 
 		System.out.printf("Server started; listening on port %d\n", port);
 
-		while (listening)
-			new	BitterServerThread(serverSocket.accept(), mHandler,
-					lTable, uHash).start();
+		while (server.listening)
+			new	BitterServerThread(serverSocket.accept(), server.mHandler,
+					server.lTable, server.uHash).start();
 
 		serverSocket.close();
 	}

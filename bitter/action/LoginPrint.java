@@ -27,7 +27,10 @@ public class LoginPrint implements Action {
 			return "Subscribe to someone, already!";
 		}
 		String messages = "";
+		int sloppyCounter = 0;
         for (Message message : mList) {
+			if (sloppyCounter > 20)
+				break;
 			User poster = message.getPoster();
 			if ((user == null || !user.subscribesTo(poster)) && 
 					message.isPrivate()) {
@@ -35,6 +38,7 @@ public class LoginPrint implements Action {
 			}
             messages += MessageFormatter.toPrintableString(message);
             messages += "\n\n";
+			sloppyCounter++;
         }
 
         return "\n" + messages;
