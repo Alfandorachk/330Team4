@@ -8,6 +8,6 @@ package bitter.action;
  *
  * @author ryanogorman
  */
-public class Desubscribe implements Action {
+public class Unsubscribe implements Action {
     
 }
