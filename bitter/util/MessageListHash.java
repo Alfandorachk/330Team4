@@ -3,7 +3,7 @@ package bitter.util;
 import java.util.concurrent.*;
 import bitter.*;
 
-public class MessageListHash {
+public class MessageListHash implements java.io.Serializable{
 
     private ConcurrentHashMap<String, MessageList> hashmap;
 

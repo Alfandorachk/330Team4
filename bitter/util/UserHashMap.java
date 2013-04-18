@@ -2,7 +2,7 @@ package bitter.util;
 
 import java.util.concurrent.*;
 
-public class UserHashMap {
+public class UserHashMap implements java.io.Serializable{
 
 	private ConcurrentHashMap<String, String> hashMap;
 

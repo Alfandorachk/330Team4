@@ -8,7 +8,7 @@ import java.util.concurrent.*;
  * for converting the text-based commands of the user in to Bitter system
  * objects.
  */
-public class UserLookupTable {
+public class UserLookupTable implements java.io.Serializable{
 	
 	ConcurrentHashMap<String, User> userMap;
 	

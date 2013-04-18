@@ -2,7 +2,7 @@ package bitter;
 
 import bitter.util.*;
 
-public class Message {
+public class Message implements java.io.Serializable{
 
     public static boolean PRIVATE = true;
     public static boolean PUBLIC = false;

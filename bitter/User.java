@@ -8,7 +8,7 @@ package bitter;
 
 import java.util.*;
 
-public class User {
+public class User implements java.io.Serializable{
 
     private String username;
     private Profile profile;
