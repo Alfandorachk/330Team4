@@ -60,9 +60,12 @@ public class BitterClient {
 	 * @return the next communication from the server
 	 */
 	public String getServerResponse() throws IOException {
-       String response = "", line;
+       String response = "";
+	   String line;
        while ((line = in.readLine()) != null) {
+		   System.out.printf("LINE IS %s\n", line);
 		   if (line.contains("END TRANSMISSION")) {
+			   System.out.print("IT CONTAINS IT BLARG\n");
 			   break;
 		   }
            response += line + "\n";
