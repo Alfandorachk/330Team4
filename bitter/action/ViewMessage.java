@@ -16,9 +16,13 @@ public class ViewMessage implements Action {
     private boolean error;
 	private String searchBy;
 	private String searchTerm;
+	private User poster;
+	private User user;
 
-    public ViewMessage(List<String> terms, MessageHandler mHandler) {
+    public ViewMessage(List<String> terms, MessageHandler mHandler, 
+			User user) {
         this.mHandler = mHandler;
+		this.user = user;
         mList = null;
         error = false;
 		if (terms.size() < 3) {
@@ -44,14 +48,18 @@ public class ViewMessage implements Action {
         String messages = "";
 		if (mList == null) {
 			return String.format("No results for %s %s", searchBy, searchTerm);
-
 		}
         for (Message message : mList) {
+			poster = message.getPoster();
+			if ((user == null || !user.subscribesTo(poster)) && 
+					message.isPrivate()) {
+				continue;
+			}
             messages += MessageFormatter.toPrintableString(message);
             messages += "\n";
         }
 
-        return messages;
+        return "\n" + messages;
     }
 
 } // End class ViewMessage

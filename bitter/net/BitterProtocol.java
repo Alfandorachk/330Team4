@@ -42,9 +42,9 @@ public class BitterProtocol {
      * @param user the user at the other end of the connection
      * @param mHandler the server's MessageHandler
      */
-    public BitterProtocol(User user, MessageHandler mHandler,
+    public BitterProtocol(MessageHandler mHandler,
 			UserLookupTable lTable, UserHashMap uHash) {
-        this.user = user;
+        this.user = null;
         this.mHandler = mHandler;
 		this.lTable = lTable;
 		this.uHash = uHash;
@@ -82,7 +82,8 @@ public class BitterProtocol {
             response = (new PostMessage(user, mHandler, terms)).doAction();
             break;
         case "view":
-			Action viewer = ViewerFactory.makeViewer(terms, mHandler, lTable);
+			Action viewer = ViewerFactory.makeViewer(terms, mHandler, 
+					lTable, user);
             response = viewer.doAction();
             break;
 		case "register":

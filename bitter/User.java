@@ -55,6 +55,14 @@ public class User {
     public boolean removeSub(User name){
         return subTo.remove(name);
     }
-  
+
+	/**
+	 * Determines whether this user is subscribed to the given user.
+	 * @param name the user that is to be determined subscritionness so tired
+	 * @return whether or not this user is subscribed to that user
+	 */
+	public boolean subscribesTo(User name) {
+		return subTo.contains(name);
+	}
 
 }

@@ -20,7 +20,6 @@ public class BitterServerThread extends Thread {
     private MessageHandler mHandler;
     private BitterProtocol protocol;
 	private UserLookupTable lTable;
-    private User user;
 	private UserHashMap uHash;
 
 	public BitterServerThread(Socket socket, MessageHandler mHandler,
@@ -33,9 +32,7 @@ public class BitterServerThread extends Thread {
 	}
 
 	public void run() {
-        user = getUser();   // FOR TESTING PHASE ONLY
-		lTable.addUser(user);	// FOR TESTING PHASE ONLY
-        protocol = new BitterProtocol(user, mHandler, lTable, uHash);
+        protocol = new BitterProtocol(mHandler, lTable, uHash);
 		try {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(
@@ -58,9 +55,5 @@ public class BitterServerThread extends Thread {
 			e.printStackTrace();
         }
 	}
-
-    private User getUser() {
-        return new User("guest");
-    }
 
 } // End class BitterServerThread

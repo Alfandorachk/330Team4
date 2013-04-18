@@ -18,6 +18,7 @@ public class PostMessage implements Action {
 
     private Message message;
     private MessageHandler mHandler;
+	private String error;
 
     /**
      * Bundles a message to be sent when doAction() is called.
@@ -28,13 +29,18 @@ public class PostMessage implements Action {
      */
     public PostMessage(User user, MessageHandler mHandler,
             List<String> commandTerms) {
+		error = "";
         this.mHandler = mHandler;
-        if (commandTerms.get(TYPE_TERM).toLowerCase().equals("private")) {
-            message = Message.bundlePrivateMessage(
-                    user, commandTerms.get(CONTENT_TERM));
-        } else {
-            message = Message.bundlePublicMessage(
-                    user, commandTerms.get(CONTENT_TERM));
+		if (user == null) {
+			error = "Need to be logged in.";
+		} else {
+			if (commandTerms.get(TYPE_TERM).toLowerCase().equals("private")) {
+				message = Message.bundlePrivateMessage(
+						user, commandTerms.get(CONTENT_TERM));
+			} else {
+				message = Message.bundlePublicMessage(
+						user, commandTerms.get(CONTENT_TERM));
+			}
         }
     }
 
@@ -46,6 +52,9 @@ public class PostMessage implements Action {
      */
     @Override
     public String doAction() {
+		if (!error.equals("")) {
+			return error;
+		}
         mHandler.addMessage(message);
         return String.format("Message posted on %s",
                 message.getTime().toPrintableString()); 
