@@ -19,11 +19,13 @@ public class ViewMessage implements Action {
         this.mHandler = mHandler;
         mList = null;
         error = false;
-        if (terms.get(VIEW_TYPE).toLowerCase().equals("topic")) {
+		if (terms.isEmpty()) {
+			error = true;
+		} else if (terms.get(VIEW_TYPE).toLowerCase().equals("topic")) {
             mList = mHandler.getMessagesByTopic(terms.get(VIEW_SUBJECT));
         } else if (terms.get(VIEW_TYPE).toLowerCase().equals("user")) {
             mList = mHandler.getMessagesByUser(terms.get(VIEW_SUBJECT));
-        } else {
+		} else {
             error = true;
         }
     }

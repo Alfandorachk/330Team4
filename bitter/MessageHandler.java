@@ -27,14 +27,16 @@ public class MessageHandler {
     public void addMessage(Message message) {
 		System.out.print("Adding message\n");
         String contents = message.getBody();
-        LinkedList<String> keys = MessageParser.extractAddressees(contents);
-        for (String key : keys) {
-            messageHash.putMessage(USER_PREFIX + key, message);
-        }
+        LinkedList<String> keys;
+	    //keys = MessageParser.extractAddressees(contents);
+       // for (String key : keys) {
+        //    messageHash.putMessage(USER_PREFIX + key, message);
+       // }
         keys = MessageParser.extractTopics(contents);
         for (String key : keys) {
             messageHash.putMessage(TOPIC_PREFIX + key, message);
         }
+		messageHash.putMessage(message.getPoster().getName(), message);
     }
 
 } // End class MessageHandler

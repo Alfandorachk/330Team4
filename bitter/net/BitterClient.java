@@ -62,7 +62,7 @@ public class BitterClient {
 	public String getServerResponse() throws IOException {
        String response = "", line;
        while ((line = in.readLine()) != null) {
-		   if (line.equals("END_TRANSMISSION")) {
+		   if (line.contains("END TRANSMISSION")) {
 			   break;
 		   }
            response += line + "\n";
