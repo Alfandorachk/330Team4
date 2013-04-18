@@ -4,7 +4,7 @@ package bitter;
  * A simple data transfer object that represents a user's profile in the Bitter
  * system.
  */
-public class Profile {
+public class Profile implements java.io.Serializable {
 
 /*
     private static final FIRSTNAME_MAX_LENGTH = 10;

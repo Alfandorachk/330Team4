@@ -25,7 +25,7 @@ public class BitterProtocol {
     //private static final String PARSE_REGEX = 
     //        "((<=\"[^\"]*).*(?=[^\"]*\")|\\w+)";
 	private static final String PARSE_REGEX =
-			"(\"[^\"]*\"|\\w+)";
+			"(\"[^\"]*\"|[\\w@.]+)";
     private static final Pattern PARSE_PATTERN = Pattern.compile(PARSE_REGEX);
 
     private User user;
@@ -108,6 +108,9 @@ public class BitterProtocol {
 			if (response.equals("Logged out")) {
 				user = null;
 			}
+			break;
+		case "change":
+			response = (new ChangeProfile(terms, user)).doAction();
 			break;
 		case "subscribe":
 			response = (new Subscribe(terms, user, lTable)).doAction();
