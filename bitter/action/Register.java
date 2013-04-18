@@ -26,5 +26,5 @@ class Register {
 		/** Adds the registration to the Hash Map
 			Takes no parameters and returns nothing
 		*/
-		hashMap.putRegistrants(userName, password);
+		hashMap.putRegistrant(userName, password);
 	}
