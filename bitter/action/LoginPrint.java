@@ -15,8 +15,11 @@ public class LoginPrint implements Action {
 		List<User> subs = user.getSubscriptions();
 		for (User sub : subs) {
 			String subName = sub.getName();
-			for (Message message : mHandler.getMessagesByUser(subName)) {
-				mList.add(message);
+			MessageList mList2 = mHandler.getMessagesByUser(subName);
+			if (mList2 != null) {
+				for (Message message : mList2) {
+					mList.add(message);
+				}
 			}
 		}
 	}
