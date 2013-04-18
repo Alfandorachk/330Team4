@@ -49,7 +49,7 @@ public class BitterProtocol {
 		this.lTable = lTable;
 		this.uHash = uHash;
 		state = State.NORMAL;
-		saveState
+		saveState = "";
     }
     
     public String processCommand(String command) { 
@@ -61,7 +61,10 @@ public class BitterProtocol {
 		}
 		if (state == State.REGISTERING) {
 			state = State.NORMAL;
-			return (new RegisterStageTwo(terms)).doAction();
+			response = (new RegisterStageTwo(terms, uHash, lTable,
+						saveState)).doAction();
+			saveState = "";
+			return response;
 		}
         switch (terms.get(0)) {
         case "post":
@@ -75,6 +78,7 @@ public class BitterProtocol {
 			response = (new RegisterStageOne(terms)).doAction();
 			if (response.equals("Enter Password: ")) {
 				state = State.REGISTERING;
+				saveState = terms.get(1);
 			}
 			break;
         default:
