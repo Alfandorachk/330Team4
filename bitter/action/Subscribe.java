@@ -10,6 +10,7 @@ import bitter.util.*;
 import java.util.*;
 
 public class Subscribe implements Action {
+
     private static int VIEW_TYPE = 1;
     private static int SUB_SUBJECT = 2;
     private static final String VIEW_COM_FORMAT =
@@ -34,17 +35,16 @@ public class Subscribe implements Action {
         error = false;
         
         if (terms.size() < 3) {
-		error = true;
-	} else {
-		searchBy = terms.get(VIEW_TYPE).toLowerCase();
-		subTo = terms.get(SUB_SUBJECT);
-                if (searchBy.equals("user")) {
-                    subscribeTo = users.lookupUser(subTo); 
-                } else {
-                    error = true;
-		}
-	}   
-        
+			error = true;
+		} else {
+			searchBy = terms.get(VIEW_TYPE).toLowerCase();
+			subTo = terms.get(SUB_SUBJECT);
+			if (searchBy.equals("user")) {
+				subscribeTo = users.lookupUser(subTo); 
+			} else {
+				error = true;
+			}
+		}   
     }
     
     /**
@@ -57,12 +57,15 @@ public class Subscribe implements Action {
         if (error) {
             return "View command format: " + VIEW_COM_FORMAT;
         } 
-        
-	if(subscribeTo == null){
-		return String.format("No results for %s", searchBy);
+		if(subscribeTo == null){
+			return String.format("No results for %s", searchBy);
         }
+		if(subscriber == null) {
+			return "Need to login first.";
+		}
+		subscriber.addSub(subscribeTo);
     
         return "Subscribed to user " + subTo;
     }
     
-}
+} // End class Subscribe

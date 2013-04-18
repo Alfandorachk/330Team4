@@ -56,7 +56,7 @@ public class ViewMessage implements Action {
 				continue;
 			}
             messages += MessageFormatter.toPrintableString(message);
-            messages += "\n";
+            messages += "\n\n";
         }
 
         return "\n" + messages;

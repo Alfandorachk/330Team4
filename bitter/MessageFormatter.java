@@ -20,6 +20,7 @@ public class MessageFormatter {
     public static String toPrintableString(Message message) {
         String ps = "@" + message.getPoster().getName() + "\n";
         ps += message.getTime().toPrintableString() + "\n";
+		ps += (message.isPrivate() ? "Private" : "Public") + " message: \n";
         ps += message.getBody();
 
         return ps;

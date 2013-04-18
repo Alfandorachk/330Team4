@@ -25,7 +25,6 @@ public class MessageHandler {
     }
 
     public void addMessage(Message message) {
-		System.out.print("Adding message\n");
         String contents = message.getBody();
         LinkedList<String> keys;
 	    //keys = MessageParser.extractAddressees(contents);
