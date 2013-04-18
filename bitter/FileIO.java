@@ -13,7 +13,7 @@ public class FileIO {
 	public FileIO() {
 		CHARSET = Charset.forName("US-ASCII");
 	}
-	public void writeToFile (String text, Path file) {
+	public void writeLineToFile (String text, Path file) {
 		try (BufferedWriter writer = Files.newBufferedWriter(file, CHARSET, NLINE, MAKE, WRITE)) {
 		    writer.write(text, 0, text.length());
 		    writer.newLine();
