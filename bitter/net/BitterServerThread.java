@@ -35,7 +35,6 @@ public class BitterServerThread extends Thread {
 									new InputStreamReader(
 									socket.getInputStream()));
 			String inputLine, outputLine;
-			System.out.printf("Sending greeting %s\n", GREETING);
 			out.println(GREETING);
 
 			while ((inputLine = in.readLine()) != null) {
